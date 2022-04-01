@@ -1,0 +1,8 @@
+.sidebar {
+    grid-area: nav;
+    background-color: chartreuse;
+}
+
+.item {
+    color: blue;
+}
