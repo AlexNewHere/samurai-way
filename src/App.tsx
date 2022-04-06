@@ -1,17 +1,20 @@
 import React from 'react';
 import './App.css';
-// import logo.png from './logo'
 import {Header} from './components/Header/Header';
 import {Navbar} from './components/Navbar/Navbar';
 import {Content} from './components/Content/Content';
 import {Footer} from './components/Footer/Footer';
+import {Dialogs} from './components/Dialog/Dialogs';
 
 const App = () => {
     return (
-        <div className="grid">
+        <div className="grid_wrapper">
             <Header/>
             <Navbar/>
-            <Content/>
+            {/*<Content/>*/}
+            <div className='grid_wrapper_content'>
+                <Dialogs/>
+            </div>
             <Footer/>
         </div>
     );

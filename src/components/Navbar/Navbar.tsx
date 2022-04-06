@@ -6,7 +6,7 @@ export const Navbar = () =>{
     return (
         <div className={s.sidebar}>
             <div className={s.item}>
-                <a>Profile</a>
+                <a href='/dialogs'>Profile</a>
             </div>
             <div className={s.item}>
                 <a>Messages</a>
