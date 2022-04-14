@@ -14,13 +14,13 @@ export const Navbar = () =>{
                 <NavLink to='/dialogs' className={linkActive}>Message</NavLink>
             </div>
             <div className={s.item}>
-                <NavLink to='/content' className={linkActive}>News</NavLink>
+                <NavLink to='/#' className={linkActive}>News</NavLink>
             </div>
             <div className={s.item}>
-                <NavLink to='/content' className={linkActive}>Music</NavLink>
+                <NavLink to='/#' className={linkActive}>Music</NavLink>
             </div>
             <div className={s.item}>
-                <NavLink to='/content' className={linkActive}>Settings</NavLink>
+                <NavLink to='/#' className={linkActive}>Settings</NavLink>
             </div>
         </div>
     )

@@ -6,9 +6,15 @@ import {Profile} from './components/Profile/Profile';
 import {Footer} from './components/Footer/Footer';
 import {Dialogs} from './components/Dialog/Dialogs';
 import {Route, Routes} from 'react-router-dom';
+import {RootStateType} from './Redux/State';
 
 
-export const App = () => {
+type AppPropsType = {
+    state: RootStateType
+}
+
+export const App = (props: AppPropsType) => {
+
     return (
         <div className="grid_wrapper">
             <Header/>
@@ -17,11 +23,17 @@ export const App = () => {
             <div className="grid_wrapper_content">
 
                 <Routes>
-                    <Route path='/dialogs/*' element={<Dialogs/>}/>
-                    <Route path='/content' element={<Profile/>}/>
+                    <Route path="/dialogs/*" element={<Dialogs
+                        dialogsPage={props.state.dialogsPage}
+
+                    />}/>
+                    <Route path="/content" element={<Profile
+                        posts={props.state.profilePage}
+
+                    />}/>
                 </Routes>
             </div>
-                    <Footer/>
+            <Footer/>
         </div>
     );
 }
