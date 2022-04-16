@@ -8,7 +8,6 @@ import {Dialogs} from './components/Dialog/Dialogs';
 import {Route, Routes} from 'react-router-dom';
 import {RootStateType} from './Redux/State';
 
-
 type AppPropsType = {
     state: RootStateType
 }

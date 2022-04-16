@@ -1,4 +1,207 @@
- Social media
+Social media
 
-Конкантинация стилей
- <div className={`${s.item} ${s.sidebar}`}>
+```mermaid
+
+
+graph TD;
+    A[index.tsx]-- BrRouter -->B[App.tsx];
+        B-->C[<Header/>];
+            C-->c1((logo))
+    
+        B-->D[<Navbar/>];
+        D-->d1{{Profile}}
+        
+        subgraph Link
+            d1---d2{{Message}}
+            d2---d3{{News}}
+            end
+           
+        B--Route-->E[<Profile/>];
+            E-->e1[ProfileInfo]
+            E-->e2[MyPosts]
+            
+        B--Route-->F[<Dialogs/>];
+            F-->f1[<DialogItem/>];
+            F-->f2[<Message/>];
+            
+            
+            
+           
+   
+
+ ```
+
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
