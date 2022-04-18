@@ -6,7 +6,7 @@ import {Profile} from './components/Profile/Profile';
 import {Footer} from './components/Footer/Footer';
 import {Dialogs} from './components/Dialog/Dialogs';
 import {Route, Routes} from 'react-router-dom';
-import {RootStateType} from './Redux/State';
+import {addPost, changeNewText, RootStateType} from './Redux/State';
 
 type AppPropsType = {
     state: RootStateType
@@ -28,7 +28,9 @@ export const App = (props: AppPropsType) => {
                     />}/>
                     <Route path="/content" element={<Profile
                         posts={props.state.profilePage}
-
+                        newPostText={props.state.profilePage.newPostText}
+                        addPost={addPost}
+                        changeNewText={changeNewText}
                     />}/>
                 </Routes>
             </div>

@@ -1,3 +1,7 @@
+import {renderTree} from '../renderTree';
+import {v1} from 'uuid';
+
+
 export type PostType = {
     post: string
     id: string
@@ -19,6 +23,7 @@ export type DialogsPageType = {
     messages: Array<MessageType>
 }
 export type ProfilePageType = {
+    newPostText: string
     posts: Array<PostType>
 }
 
@@ -30,27 +35,45 @@ export type RootStateType = {
 let state: RootStateType = {
     dialogsPage: {
         dialogs: [
-            {id: '1', name: 'Alex'},
-            {id: '2', name: 'Oleg'},
-            {id: '3', name: 'Ivan'},
-            {id: '4', name: 'Diana'},
-            {id: '5', name: 'Ksy'}
+            {id: v1(), name: 'Alex'},
+            {id: v1(), name: 'Oleg'},
+            {id: v1(), name: 'Ivan'},
+            {id: v1(), name: 'Diana'},
+            {id: v1(), name: 'Ksy'}
         ],
 
         messages: [
-            {id: '1', message: 'Hi'},
-            {id: '2', message: 'How are you?'},
-            {id: '3', message: 'Hoho'},
-            {id: '4', message: 'Yo'}
+            {id: v1(), message: 'Hi'},
+            {id: v1(), message: 'How are you?'},
+            {id: v1(), message: 'Hoho'},
+            {id: v1(), message: 'Yo'}
         ]
     },
     profilePage: {
+        newPostText: '',
         posts: [
-            {id: '1', post: 'Hi. I am here!', likesCount: 15},
-            {id: '2', post: 'Hello', likesCount: 10},
-            {id: '3', post: 'It`s my first post', likesCount: 30},
+            {id: v1(), post: 'Hi. I am here!', likesCount: 15},
+            {id: v1(), post: 'Hello', likesCount: 10},
+            {id: v1(), post: 'It`s my first post', likesCount: 30},
         ]
     }
 }
+
+export const addPost =(postText: string) => {
+    let newPost: PostType = {
+        id: v1(),
+        post: postText,
+        likesCount: 0
+    }
+    state.profilePage.posts.unshift(newPost)
+    renderTree(state)
+    state.profilePage.newPostText = ''
+}
+
+export const changeNewText = (newText: string) => {
+    state.profilePage.newPostText = newText
+    renderTree(state)
+}
+
 
 export default state;
