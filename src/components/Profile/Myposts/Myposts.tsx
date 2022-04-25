@@ -6,23 +6,25 @@ import {ProfilePageType} from '../../../Redux/State';
 type PropsType = {
     posts: ProfilePageType
     newPostText: string
-    addPost: (postText: string) => void
+    addPost: () => void
     changeNewText: (newText: string) => void
 }
 
 export const MyPosts = (props: PropsType) => {
 
-    let postsElements = props.posts.posts.map(p => <Post post={p.post} id={p.id} likesCount={p.likesCount}/>)
+    let postsElements = props.posts.posts.map(p =>
+        <Post
+            post={p.post}
+            id={p.id}
+            likesCount={p.likesCount}
+        />)
 
     const onButtonClick = () => {
-
-        if (props.newPostText) {props.addPost(props.newPostText)}
-
+        props.newPostText && props.addPost()
     }
 
-
     const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-       props.changeNewText(e.currentTarget.value)
+        props.changeNewText(e.currentTarget.value)
     }
 
     return (
@@ -32,8 +34,7 @@ export const MyPosts = (props: PropsType) => {
                 <textarea className={a.textarea}
                           placeholder={'Enter your post'}
                           value={props.newPostText}
-                          onChange={onPostChange}>
-                 </textarea>
+                          onChange={onPostChange}/>
                 <div>
                     <button onClick={onButtonClick}>Submit</button>
                 </div>

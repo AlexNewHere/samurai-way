@@ -25,13 +25,15 @@ export const App = (props: AppPropsType) => {
                     <Route path="/dialogs/*" element={<Dialogs
                         dialogsPage={props.state.dialogsPage}
 
-                    />}/>
+                    />}
+                    />
                     <Route path="/content" element={<Profile
                         posts={props.state.profilePage}
                         newPostText={props.state.profilePage.newPostText}
                         addPost={addPost}
                         changeNewText={changeNewText}
-                    />}/>
+                    />}
+                    />
                 </Routes>
             </div>
             <Footer/>
