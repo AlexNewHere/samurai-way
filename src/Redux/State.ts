@@ -26,57 +26,78 @@ export type RootStateType = {
     profilePage: ProfilePageType
 }
 
-
-let onChange = ()=> {
-
+export type storeType = {
+    _state: RootStateType
+    _onChange: () => void
+    subscribe: (observer: () => void) => void
+    getState: () => RootStateType
+    dispatch: (action: ActionsType) => void
 }
 
-export const subscribe = (observer: () => void) => {
-    onChange = observer;
+type AddActionType = {
+    type: 'ADD-POST'
+
+}
+type NewPostTextType = {
+    type: 'NEW-POST-TEXT'
+    newText: string
 }
 
-let state: RootStateType = {
-    dialogsPage: {
-        dialogs: [
-            {id: v1(), name: 'Alex'},
-            {id: v1(), name: 'Oleg'},
-            {id: v1(), name: 'Ivan'},
-            {id: v1(), name: 'Diana'},
-            {id: v1(), name: 'Ksy'}
-        ],
+export type ActionsType = AddActionType | NewPostTextType
 
-        messages: [
-            {id: v1(), message: 'Hi'},
-            {id: v1(), message: 'How are you?'},
-            {id: v1(), message: 'Hoho'},
-            {id: v1(), message: 'Yo'}
-        ]
+
+const store: storeType = {
+    _state: {
+        dialogsPage: {
+            dialogs: [
+                {id: v1(), name: 'Alex'},
+                {id: v1(), name: 'Oleg'},
+                {id: v1(), name: 'Ivan'},
+                {id: v1(), name: 'Diana'},
+                {id: v1(), name: 'Ksy'}
+            ],
+
+            messages: [
+                {id: v1(), message: 'Hi'},
+                {id: v1(), message: 'How are you?'},
+                {id: v1(), message: 'Hoho'},
+                {id: v1(), message: 'Yo'}
+            ]
+        },
+        profilePage: {
+            newPostText: '',
+            posts: [
+                {id: v1(), post: 'Hi. I am here!', likesCount: 15},
+                {id: v1(), post: 'Hello', likesCount: 10},
+                {id: v1(), post: 'It`s my first post', likesCount: 30},
+            ]
+        }
     },
-    profilePage: {
-        newPostText: '',
-        posts: [
-            {id: v1(), post: 'Hi. I am here!', likesCount: 15},
-            {id: v1(), post: 'Hello', likesCount: 10},
-            {id: v1(), post: 'It`s my first post', likesCount: 30},
-        ]
+    getState() {
+        return this._state
+    },
+    _onChange() {
+    },
+    subscribe(observer: () => void) {
+        store._onChange = observer;
+    },
+
+
+    dispatch(action){
+        if (action.type === 'ADD-POST') {
+            const newPost: PostType = {
+                id: v1(),
+                post: this._state.profilePage.newPostText,
+                likesCount: 0
+            }
+            this._state.profilePage.posts.unshift(newPost)
+            this._onChange()
+            this._state.profilePage.newPostText = ''
+        } else if (action.type === 'NEW-POST-TEXT') {
+            this._state.profilePage.newPostText = action.newText
+            this._onChange()
+        }
     }
 }
 
-export const addPost =() => {
-    let newPost: PostType = {
-        id: v1(),
-        post: state.profilePage.newPostText,
-        likesCount: 0
-    }
-    state.profilePage.posts.unshift(newPost)
-    onChange()
-    state.profilePage.newPostText = ''
-}
-
-export const changeNewText = (newText: string) => {
-    state.profilePage.newPostText = newText
-    onChange()
-}
-
-
-export default state;
+export default store;

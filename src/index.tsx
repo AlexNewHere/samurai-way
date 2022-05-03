@@ -1,6 +1,6 @@
 import React from 'react';
 import './index.css';
-import state, {subscribe} from './Redux/State';
+import store from './Redux/State';
 import ReactDOM from 'react-dom';
 import {BrowserRouter} from 'react-router-dom';
 import {App} from './App';
@@ -8,7 +8,7 @@ import {App} from './App';
 let renderTree = () => {
     ReactDOM.render(<React.StrictMode>
             <BrowserRouter>
-                <App state={state}/>
+                <App store={store}/>
             </BrowserRouter>
         </React.StrictMode>,
         document.getElementById('root')
@@ -18,4 +18,4 @@ let renderTree = () => {
 renderTree();
 
 
-subscribe(renderTree);
+store.subscribe(renderTree);
