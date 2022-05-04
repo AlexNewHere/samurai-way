@@ -8,7 +8,6 @@ type PostType = {
     posts: ProfilePageType
     newPostText: string
     dispatch: (action: ActionsType) => void
-
 }
 
 export const Profile = (props: PostType) => {

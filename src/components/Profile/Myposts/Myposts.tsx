@@ -1,10 +1,9 @@
 import React, {ChangeEvent} from 'react';
 import a from './Myposts.module.css'
 import {Post} from './Post/Post';
-import {ActionsType,
-    addPostActionCreator,
-    newPostTextActionCreator,
-    ProfilePageType} from '../../../Redux/State';
+import {ActionsType, ProfilePageType} from '../../../Redux/State';
+import {addPostActionCreator, newPostTextActionCreator} from '../../../Redux/ProfileReducer';
+
 
 type PropsType = {
     posts: ProfilePageType

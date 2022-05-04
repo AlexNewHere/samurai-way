@@ -1,4 +1,6 @@
 import {v1} from 'uuid';
+import {addPostActionCreator, newPostTextActionCreator, profileReducer} from './ProfileReducer';
+import {addMessageActionCreator, dialogsReducer, newMessageActionCreator} from './DialogsReducer';
 
 export type PostType = {
     post: string
@@ -39,15 +41,6 @@ export type ActionsType =
     ReturnType<typeof addMessageActionCreator> |
     ReturnType<typeof newMessageActionCreator>
 
-const ADD_POST = 'ADD-POST';
-const NEW_POST_TEXT = 'NEW-POST-TEXT';
-const ADD_MESSAGE = 'ADD-MESSAGE';
-const NEW_MESSAGE_TEXT = 'NEW-MESSAGE-TEXT';
-
-export const addPostActionCreator = () => ({type: ADD_POST} as const);
-export const newPostTextActionCreator = (text: string) => ({type: NEW_POST_TEXT, newText: text} as const)
-export const addMessageActionCreator = () => ({type: ADD_MESSAGE} as const)
-export const newMessageActionCreator = (text: string) => ({type: NEW_MESSAGE_TEXT, newText: text} as const)
 
 const store: storeType = {
     _state: {
@@ -87,30 +80,9 @@ const store: storeType = {
     },
 
     dispatch(action) {
-        if (action.type === 'ADD-POST') {
-            const newPost: PostType = {
-                id: v1(),
-                post: this._state.profilePage.newPostText,
-                likesCount: 0
-            }
-            this._state.profilePage.posts.unshift(newPost)
-            this._onChange()
-            this._state.profilePage.newPostText = ''
-        } else if (action.type === 'NEW-POST-TEXT') {
-            this._state.profilePage.newPostText = action.newText
-            this._onChange()
-        } else if (action.type === 'ADD-MESSAGE') {
-            const newMessage: MessageType = {
-                id: v1(),
-                message: this._state.dialogsPage.newMessageText
-            }
-            this._state.dialogsPage.messages.push(newMessage)
-            this._onChange()
-            this._state.dialogsPage.newMessageText = ''
-        } else if (action.type === 'NEW-MESSAGE-TEXT') {
-            this._state.dialogsPage.newMessageText = action.newText
-            this._onChange()
-        }
+        this._state.profilePage=profileReducer(this._state.profilePage, action);
+        this._state.dialogsPage=dialogsReducer(this._state.dialogsPage, action);
+        this._onChange()
     }
 }
 
