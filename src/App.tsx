@@ -24,17 +24,18 @@ export const App = (props: AppPropsType) => {
             <div className="grid_wrapper_content">
 
                 <Routes>
-                    <Route path="/dialogs/*" element={<Dialogs
-                        dialogsPage={state.dialogsPage}
-
-                    />}
+                    <Route path="/dialogs/*"
+                           element={<Dialogs
+                               dialogsPage={state.dialogsPage}
+                               newMessageText={state.dialogsPage.newMessageText}
+                               dispatch={props.store.dispatch.bind(props.store)}
+                           />}
                     />
-                    <Route path="/content" element=
-                        {<Profile
-                            posts={state.profilePage}
-                            newPostText={state.profilePage.newPostText}
-                            dispatch={props.store.dispatch.bind(props.store)}
-                        />}
+                    <Route path="/content"
+                           element={<Profile
+                               posts={state.profilePage}
+                               newPostText={state.profilePage.newPostText}
+                               dispatch={props.store.dispatch.bind(props.store)}/>}
                     />
                 </Routes>
             </div>

@@ -1,13 +1,15 @@
 import React, {ChangeEvent} from 'react';
 import a from './Myposts.module.css'
 import {Post} from './Post/Post';
-import {ActionsType, ProfilePageType} from '../../../Redux/State';
+import {ActionsType,
+    addPostActionCreator,
+    newPostTextActionCreator,
+    ProfilePageType} from '../../../Redux/State';
 
 type PropsType = {
     posts: ProfilePageType
     newPostText: string
     dispatch: (action: ActionsType) => void
-
 }
 
 export const MyPosts = (props: PropsType) => {
@@ -19,12 +21,12 @@ export const MyPosts = (props: PropsType) => {
             likesCount={p.likesCount}
         />)
 
-    const onButtonClick = () => {
-        props.newPostText && props.dispatch({type: 'ADD-POST'}  )
+    const addPost = () => {
+        props.newPostText && props.dispatch(addPostActionCreator())
     }
 
     const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.dispatch({type: 'NEW-POST-TEXT' ,newText: e.currentTarget.value})
+        props.dispatch(newPostTextActionCreator(e.currentTarget.value))
     }
 
     return (
@@ -36,7 +38,7 @@ export const MyPosts = (props: PropsType) => {
                           value={props.newPostText}
                           onChange={onPostChange}/>
                 <div>
-                    <button onClick={onButtonClick}>Submit</button>
+                    <button onClick={addPost}>Submit</button>
                 </div>
             </div>
 

@@ -16,6 +16,7 @@ export type MessageType = {
 export type DialogsPageType = {
     dialogs: Array<DialogType>
     messages: Array<MessageType>
+    newMessageText: string
 }
 export type ProfilePageType = {
     newPostText: string
@@ -25,7 +26,6 @@ export type RootStateType = {
     dialogsPage: DialogsPageType
     profilePage: ProfilePageType
 }
-
 export type storeType = {
     _state: RootStateType
     _onChange: () => void
@@ -33,18 +33,21 @@ export type storeType = {
     getState: () => RootStateType
     dispatch: (action: ActionsType) => void
 }
+export type ActionsType =
+    ReturnType<typeof addPostActionCreator> |
+    ReturnType<typeof newPostTextActionCreator> |
+    ReturnType<typeof addMessageActionCreator> |
+    ReturnType<typeof newMessageActionCreator>
 
-type AddActionType = {
-    type: 'ADD-POST'
+const ADD_POST = 'ADD-POST';
+const NEW_POST_TEXT = 'NEW-POST-TEXT';
+const ADD_MESSAGE = 'ADD-MESSAGE';
+const NEW_MESSAGE_TEXT = 'NEW-MESSAGE-TEXT';
 
-}
-type NewPostTextType = {
-    type: 'NEW-POST-TEXT'
-    newText: string
-}
-
-export type ActionsType = AddActionType | NewPostTextType
-
+export const addPostActionCreator = () => ({type: ADD_POST} as const);
+export const newPostTextActionCreator = (text: string) => ({type: NEW_POST_TEXT, newText: text} as const)
+export const addMessageActionCreator = () => ({type: ADD_MESSAGE} as const)
+export const newMessageActionCreator = (text: string) => ({type: NEW_MESSAGE_TEXT, newText: text} as const)
 
 const store: storeType = {
     _state: {
@@ -62,7 +65,8 @@ const store: storeType = {
                 {id: v1(), message: 'How are you?'},
                 {id: v1(), message: 'Hoho'},
                 {id: v1(), message: 'Yo'}
-            ]
+            ],
+            newMessageText: ''
         },
         profilePage: {
             newPostText: '',
@@ -82,8 +86,7 @@ const store: storeType = {
         store._onChange = observer;
     },
 
-
-    dispatch(action){
+    dispatch(action) {
         if (action.type === 'ADD-POST') {
             const newPost: PostType = {
                 id: v1(),
@@ -95,6 +98,17 @@ const store: storeType = {
             this._state.profilePage.newPostText = ''
         } else if (action.type === 'NEW-POST-TEXT') {
             this._state.profilePage.newPostText = action.newText
+            this._onChange()
+        } else if (action.type === 'ADD-MESSAGE') {
+            const newMessage: MessageType = {
+                id: v1(),
+                message: this._state.dialogsPage.newMessageText
+            }
+            this._state.dialogsPage.messages.push(newMessage)
+            this._onChange()
+            this._state.dialogsPage.newMessageText = ''
+        } else if (action.type === 'NEW-MESSAGE-TEXT') {
+            this._state.dialogsPage.newMessageText = action.newText
             this._onChange()
         }
     }
