@@ -41,7 +41,6 @@ export type ActionsType =
     ReturnType<typeof addMessageActionCreator> |
     ReturnType<typeof newMessageActionCreator>
 
-
 const store: storeType = {
     _state: {
         dialogsPage: {
@@ -85,5 +84,4 @@ const store: storeType = {
         this._onChange()
     }
 }
-
 export default store;
