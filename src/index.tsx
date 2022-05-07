@@ -1,11 +1,11 @@
 import React from 'react';
 import './index.css';
-import store from './Redux/redux-store';
+import store, {storeType} from './Redux/redux-store';
 import ReactDOM from 'react-dom';
 import {BrowserRouter} from 'react-router-dom';
 import {App} from './App';
 
-let renderTree = () => {
+let renderTree = (store: storeType) => {
     ReactDOM.render(
             <BrowserRouter>
                 <App store={store}/>
@@ -15,7 +15,7 @@ let renderTree = () => {
     );
 }
 
-renderTree();
+renderTree(store);
 
 
-store.subscribe(renderTree);
+store.subscribe(()=>renderTree(store));

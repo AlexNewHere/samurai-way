@@ -4,17 +4,17 @@ import {Header} from './components/Header/Header';
 import {Navbar} from './components/Navbar/Navbar';
 import {Profile} from './components/Profile/Profile';
 import {Footer} from './components/Footer/Footer';
-import {Dialogs} from './components/Dialog/Dialogs';
 import {Route, Routes} from 'react-router-dom';
 import {storeType} from './Redux/State';
+import {DialogsContainer} from "./components/Dialog/DialogsContainer";
 
-type AppPropsType = {
+export type AppPropsType = {
     store: storeType
 }
 
 export const App = (props: AppPropsType) => {
 
-    const state = props.store.getState();
+
 
     return (
         <div className="grid_wrapper">
@@ -25,17 +25,10 @@ export const App = (props: AppPropsType) => {
 
                 <Routes>
                     <Route path="/dialogs/*"
-                           element={<Dialogs
-                               dialogsPage={state.dialogsPage}
-                               newMessageText={state.dialogsPage.newMessageText}
-                               dispatch={props.store.dispatch.bind(props.store)}
-                           />}
+                           element={<DialogsContainer store={props.store}/>}
                     />
                     <Route path="/content"
-                           element={<Profile
-                               posts={state.profilePage}
-                               newPostText={state.profilePage.newPostText}
-                               dispatch={props.store.dispatch.bind(props.store)}/>}
+                           element={<Profile store={props.store}/>}
                     />
                 </Routes>
             </div>

@@ -2,30 +2,31 @@ import React, {ChangeEvent} from 'react';
 import s from './Dialogs.module.css'
 import {DialogItem} from './DialogItem/DialogsItem';
 import {Message} from './Message/Messages';
-import {ActionsType, DialogsPageType} from '../../Redux/State';
+import {DialogType, MessageType} from '../../Redux/State';
 import a from '../Profile/Myposts/Myposts.module.css';
-import {addMessageActionCreator, newMessageActionCreator} from '../../Redux/DialogsReducer';
 
 type PageStateType = {
-    dialogsPage: DialogsPageType
+    dialogs: Array<DialogType>
+    messages: Array<MessageType>
     newMessageText: string
-    dispatch: (action: ActionsType) => void
+    onPostChange: (text: string)=>void
+    addPost: ()=>void
 }
 
 export const Dialogs = (props: PageStateType) => {
 
-    const dialogsElements = props.dialogsPage.dialogs.map(d =>
+    const dialogsElements = props.dialogs.map(d =>
         <DialogItem name={d.name} key={d.id}/>)
 
-    const messagesElements = props.dialogsPage.messages.map(m =>
+    const messagesElements = props.messages.map(m =>
         <Message message={m.message} key={m.id}/>)
 
     const addPost = () => {
-        props.newMessageText && props.dispatch(addMessageActionCreator())
+       props.addPost()
     }
 
     const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.dispatch(newMessageActionCreator(e.currentTarget.value))
+        props.onPostChange(e.currentTarget.value)
     }
 
     return (
