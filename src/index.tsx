@@ -1,16 +1,16 @@
 import React from 'react';
 import './index.css';
-import store from './Redux/State';
+import store from './Redux/redux-store';
 import ReactDOM from 'react-dom';
 import {BrowserRouter} from 'react-router-dom';
 import {App} from './App';
 
 let renderTree = () => {
-    ReactDOM.render(<React.StrictMode>
+    ReactDOM.render(
             <BrowserRouter>
                 <App store={store}/>
-            </BrowserRouter>
-        </React.StrictMode>,
+            </BrowserRouter>,
+
         document.getElementById('root')
     );
 }
