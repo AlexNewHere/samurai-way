@@ -2,40 +2,40 @@ import {v1} from 'uuid';
 import {addPostActionCreator, newPostTextActionCreator, profileReducer} from './ProfileReducer';
 import {addMessageActionCreator, dialogsReducer, newMessageActionCreator} from './DialogsReducer';
 
-export type PostType = {
+type PostType = {
     post: string
     id: string
     likesCount: number
 }
-export type DialogType = {
+type DialogType = {
     name: string
     id: string
 }
-export type MessageType = {
+type MessageType = {
     message: string
     id: string
 }
-export type DialogsPageType = {
+type DialogsPageType = {
     dialogs: Array<DialogType>
     messages: Array<MessageType>
     newMessageText: string
 }
-export type ProfilePageType = {
+type ProfilePageType = {
     newPostText: string
     posts: Array<PostType>
 }
-export type RootStateType = {
+type RootStateType = {
     dialogsPage: DialogsPageType
     profilePage: ProfilePageType
 }
-export type storeType = {
+type storeType = {
     _state: RootStateType
     _onChange: () => void
     subscribe: (observer: () => void) => void
     getState: () => RootStateType
     dispatch: (action: ActionsType) => void
 }
-export type ActionsType =
+type ActionsType =
     ReturnType<typeof addPostActionCreator> |
     ReturnType<typeof newPostTextActionCreator> |
     ReturnType<typeof addMessageActionCreator> |
@@ -84,4 +84,3 @@ const store: storeType = {
         this._onChange()
     }
 }
-export default store;

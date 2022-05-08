@@ -1,17 +1,11 @@
 import React, {ChangeEvent} from 'react';
 import a from './Myposts.module.css'
 import {Post} from './Post/Post';
-import {PostType} from '../../../Redux/State';
+import {MapDispatchToPropsType, MapStateToPropsType} from "./MypostsContainer";
 
 
-type PropsType = {
-    posts: Array<PostType>
-    newPostText: string
-    addPost: ()=> void
-    onPostChange: (post: string)=>void
-}
 
-export const MyPosts = (props: PropsType) => {
+export const MyPosts: React.FC<MapStateToPropsType & MapDispatchToPropsType> = (props) => {
 
     let postsElements = props.posts.map(p =>
         <Post

@@ -1,21 +1,26 @@
 import {combineReducers, legacy_createStore} from "redux";
-import {profileReducer} from "./ProfileReducer";
-import {dialogsReducer} from "./DialogsReducer";
-import {ActionsType, RootStateType} from "./State";
+import {addPostActionCreator, newPostTextActionCreator, profileReducer} from "./ProfileReducer";
+import {addMessageActionCreator, dialogsReducer, newMessageActionCreator} from "./DialogsReducer";
 
-export type storeType = {
-    _state: RootStateType
-    _onChange: () => void
-    subscribe: (observer: () => void) => void
-    getState: () => RootStateType
-    dispatch: (action: ActionsType) => void
-}
 
-let reducers = combineReducers({
+export type RootReducerType= ReturnType<typeof rootReducers>
+
+export type ActionsType =
+    ReturnType<typeof addPostActionCreator> |
+    ReturnType<typeof newPostTextActionCreator> |
+    ReturnType<typeof addMessageActionCreator> |
+    ReturnType<typeof newMessageActionCreator>
+
+
+
+
+let rootReducers = combineReducers({
     profilePage: profileReducer,
     dialogsPage: dialogsReducer
 })
 
-let store: storeType = legacy_createStore(reducers)
+
+
+let store = legacy_createStore(rootReducers)
 
 export default store

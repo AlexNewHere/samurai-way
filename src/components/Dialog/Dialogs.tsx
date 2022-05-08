@@ -2,19 +2,13 @@ import React, {ChangeEvent} from 'react';
 import s from './Dialogs.module.css'
 import {DialogItem} from './DialogItem/DialogsItem';
 import {Message} from './Message/Messages';
-import {DialogType, MessageType} from '../../Redux/State';
 import a from '../Profile/Myposts/Myposts.module.css';
+import {MapDispatchToPropsType, MapStateToPropsType} from "./DialogsContainer";
 
-type PageStateType = {
-    dialogs: Array<DialogType>
-    messages: Array<MessageType>
-    newMessageText: string
-    onPostChange: (text: string)=>void
-    addPost: ()=>void
-}
 
-export const Dialogs = (props: PageStateType) => {
 
+export const Dialogs: React.FC<MapStateToPropsType & MapDispatchToPropsType> = (props) => {
+debugger
     const dialogsElements = props.dialogs.map(d =>
         <DialogItem name={d.name} key={d.id}/>)
 

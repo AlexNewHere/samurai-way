@@ -5,16 +5,11 @@ import {Navbar} from './components/Navbar/Navbar';
 import {Profile} from './components/Profile/Profile';
 import {Footer} from './components/Footer/Footer';
 import {Route, Routes} from 'react-router-dom';
-import {storeType} from './Redux/State';
 import {DialogsContainer} from "./components/Dialog/DialogsContainer";
 
-export type AppPropsType = {
-    store: storeType
-}
-
-export const App = (props: AppPropsType) => {
 
 
+export const App = () => {
 
     return (
         <div className="grid_wrapper">
@@ -25,10 +20,10 @@ export const App = (props: AppPropsType) => {
 
                 <Routes>
                     <Route path="/dialogs/*"
-                           element={<DialogsContainer store={props.store}/>}
+                           element={<DialogsContainer/>}
                     />
                     <Route path="/content"
-                           element={<Profile store={props.store}/>}
+                           element={<Profile/>}
                     />
                 </Routes>
             </div>
