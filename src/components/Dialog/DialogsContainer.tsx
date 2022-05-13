@@ -6,7 +6,8 @@ import {
 } from '../../Redux/DialogsReducer';
 import {Dialogs} from "./Dialogs";
 import {connect} from "react-redux";
-import {ActionsType, RootReducerType} from "../../Redux/redux-store";
+import {RootReducerType} from "../../Redux/redux-store";
+import {Dispatch} from 'redux';
 
 
 export type MapStateToPropsType = {
@@ -27,7 +28,7 @@ let mapStateToProps = (state: RootReducerType): MapStateToPropsType => {
     }
 }
 
-let mapDispatchToProps = (dispatch: (action: ActionsType) => void) => {
+let mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
     return {
         onPostChange: (text: string) => {
             dispatch(newMessageActionCreator(text))

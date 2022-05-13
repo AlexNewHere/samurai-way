@@ -24,7 +24,7 @@ let initialstate: ProfilePageType = {
     ]
 }
 
-export const profileReducer = (state = initialstate, action: ActionsType): ProfilePageType => {
+export const profileReducer = (state: ProfilePageType = initialstate, action: ActionsType): ProfilePageType => {
 
     switch (action.type) {
         case 'ADD-POST':
@@ -33,14 +33,13 @@ export const profileReducer = (state = initialstate, action: ActionsType): Profi
                 post: state.newPostText,
                 likesCount: 0
             }
-            state.posts.unshift(newPost)
-            state.newPostText = ''
-            break;
+            return {...state, posts: [...state.posts, newPost], newPostText: ''};
+
         case 'NEW-POST-TEXT':
-            state.newPostText = action.newText
-            break;
+            return {...state, newPostText: action.newText};
+        default:
+            return state;
     }
-    return state;
 };
 export const addPostActionCreator = () => ({type: ADD_POST} as const);
 export const newPostTextActionCreator = (text: string) => ({type: NEW_POST_TEXT, newText: text} as const)

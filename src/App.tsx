@@ -8,7 +8,6 @@ import {Route, Routes} from 'react-router-dom';
 import {DialogsContainer} from "./components/Dialog/DialogsContainer";
 
 
-
 export const App = () => {
 
     return (
