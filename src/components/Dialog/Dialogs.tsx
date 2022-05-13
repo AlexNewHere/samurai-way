@@ -3,11 +3,11 @@ import s from './Dialogs.module.css'
 import {DialogItem} from './DialogItem/DialogsItem';
 import {Message} from './Message/Messages';
 import a from '../Profile/Myposts/Myposts.module.css';
-import {MapDispatchToPropsType, MapStateToPropsType} from "./DialogsContainer";
+import {DialogsPropsType} from './DialogsContainer';
 
 
 
-export const Dialogs: React.FC<MapStateToPropsType & MapDispatchToPropsType> = (props) => {
+export const Dialogs: React.FC<DialogsPropsType> = (props) => {
 debugger
     const dialogsElements = props.dialogs.map(d =>
         <DialogItem name={d.name} key={d.id}/>)

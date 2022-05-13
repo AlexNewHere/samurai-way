@@ -13,6 +13,7 @@ width: 1280px;
 
 .grid_wrapper_content {
   grid-area: content;
-  background-color: bisque;
+  background-color: #fae4cd;
+
  }
 

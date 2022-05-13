@@ -6,7 +6,6 @@ export type PostType = {
     id: string
     likesCount: number
 }
-
 export type ProfilePageType = {
     newPostText: string
     posts: Array<PostType>
@@ -24,8 +23,8 @@ let initialstate: ProfilePageType = {
     ]
 }
 
-export const profileReducer = (state: ProfilePageType = initialstate, action: ActionsType): ProfilePageType => {
-
+export const profileReducer = (state: ProfilePageType = initialstate,
+                               action: ActionsType): ProfilePageType => {
     switch (action.type) {
         case 'ADD-POST':
             const newPost: PostType = {
@@ -41,5 +40,6 @@ export const profileReducer = (state: ProfilePageType = initialstate, action: Ac
             return state;
     }
 };
+
 export const addPostActionCreator = () => ({type: ADD_POST} as const);
 export const newPostTextActionCreator = (text: string) => ({type: NEW_POST_TEXT, newText: text} as const)

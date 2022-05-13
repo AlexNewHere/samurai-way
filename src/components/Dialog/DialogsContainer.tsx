@@ -1,4 +1,3 @@
-import React from 'react';
 import {
     addMessageActionCreator,
     DialogType, MessageType,
@@ -19,6 +18,8 @@ export type MapDispatchToPropsType = {
     onPostChange: (texgt: string) => void,
     addPost: () => void
 }
+
+export type DialogsPropsType = MapStateToPropsType & MapDispatchToPropsType
 
 let mapStateToProps = (state: RootReducerType): MapStateToPropsType => {
     return {

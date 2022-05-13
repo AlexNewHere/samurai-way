@@ -12,9 +12,7 @@ export type MapDispatchToPropsType = {
     onPostChange: (post: string) => void,
     addPost: () => void
 }
-
 export type UsersDispatchPropsType = MapStateToPropsType & MapDispatchToPropsType
-
 
 let mapStoreToProps = (state: RootReducerType): MapStateToPropsType=>{
     return {
@@ -33,6 +31,5 @@ let mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
         }
     }
 }
-
 
 export const MyPostsContainer = connect<MapStateToPropsType, MapDispatchToPropsType, {}, RootReducerType>(mapStoreToProps, mapDispatchToProps)(MyPosts)
