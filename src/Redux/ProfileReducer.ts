@@ -1,4 +1,3 @@
-import {ActionsType} from './redux-store';
 import {v1} from 'uuid';
 
 export type PostType = {
@@ -22,6 +21,10 @@ let initialstate: ProfilePageType = {
         {id: v1(), post: 'It`s my first post', likesCount: 30},
     ]
 }
+
+export type ActionsType =
+    ReturnType<typeof addPostActionCreator> |
+    ReturnType<typeof newPostTextActionCreator>
 
 export const profileReducer = (state: ProfilePageType = initialstate,
                                action: ActionsType): ProfilePageType => {

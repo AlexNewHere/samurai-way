@@ -1,5 +1,3 @@
-import {ActionsType} from './redux-store';
-
 export type CityType = {
     city: string
     country: string
@@ -16,12 +14,15 @@ export type UsersPageType = {
     users: Array<PostType>
 }
 
-let initialstate: UsersPageType = {
-
+let initialState: UsersPageType = {
     users: []
 }
+type ActionsType = ReturnType<typeof followAC> |
+    ReturnType<typeof unFollowAC> |
+    ReturnType<typeof setUsersAC>
 
-export const usersReducer = (state: UsersPageType = initialstate,
+
+export const usersReducer = (state: UsersPageType = initialState,
                              action: ActionsType): UsersPageType => {
     switch (action.type) {
         case 'FOLLOW':
