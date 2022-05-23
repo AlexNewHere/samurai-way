@@ -6,7 +6,7 @@ import {followAC, PostType, setUsersAC, unFollowAC} from '../../Redux/UsersReduc
 
 
 export type MapStateToPropsType = {
-    users: Array<PostType>
+    items: Array<PostType>
 }
 export type MapDispatchToPropsType = {
     onFollow: (userID: string) => void,
@@ -18,7 +18,7 @@ export type UsersPropsType = MapStateToPropsType & MapDispatchToPropsType
 
 let mapStateToProps = (state: RootReducerType): MapStateToPropsType => {
     return {
-        users: state.usersPage.users
+        items: state.usersPage.items
     }
 }
 

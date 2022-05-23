@@ -14,14 +14,15 @@ export type PostType = {
     photos: PhotoType
     status: string
     followed: boolean
+    uniqueUrlName?: string | null
     // location: CityType
 }
 export type UsersPageType = {
-    users: Array<PostType>
+    items: Array<PostType>
 }
 
 let initialState: UsersPageType = {
-    users: []
+    items: []
 }
 type ActionsType = ReturnType<typeof followAC> |
     ReturnType<typeof unFollowAC> |
@@ -32,11 +33,11 @@ export const usersReducer = (state: UsersPageType = initialState,
                              action: ActionsType): UsersPageType => {
     switch (action.type) {
         case 'FOLLOW':
-            return {...state, users: state.users.map(u => u.id === action.payload.userID ? {...u, followed: false} : u)}
+            return {...state, items: state.items.map(u => u.id === action.payload.userID ? {...u, followed: false} : u)}
         case 'UN-FOLLOW':
-            return {...state, users: state.users.map(u => u.id === action.payload.userID ? {...u, followed: true} : u)}
+            return {...state, items: state.items.map(u => u.id === action.payload.userID ? {...u, followed: true} : u)}
         case 'SET-USERS':
-            return {...state, users: [...state.users, ...action.payload.users]}
+            return {...state, items: [...state.items, ...action.payload.users]}
         default:
             return state;
     }

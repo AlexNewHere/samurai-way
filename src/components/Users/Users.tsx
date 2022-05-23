@@ -2,22 +2,25 @@ import React, {useEffect} from 'react';
 import {UsersPropsType} from './UsersContainer';
 import axios from 'axios';
 import avatar from '../../logo/avatar.jpg'
+import {UsersPageType} from '../../Redux/UsersReducer';
 
 
 export const Users: React.FC<UsersPropsType> = (props) => {
 
     useEffect(()=> {
-    if (!props.users.length) {
-        axios.get('https://social-network.samuraijs.com/api/1.0/users')
+
+        axios.get<UsersPageType>('https://social-network.samuraijs.com/api/1.0/users')
             .then(response => {
                props.setUsers(response.data.items)
+                console.log(response.data)
             })
-    }}, [])
+    }, [])
 
     return (
         <div>
+
             {
-                props.users.map(user => <div key={user.id}
+                props.items.map(user => <div key={user.id}
                                              style={{
                                                  display: 'grid',
                                                  width: '50%',
