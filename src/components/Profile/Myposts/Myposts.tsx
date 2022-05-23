@@ -1,7 +1,7 @@
 import React, {ChangeEvent} from 'react';
 import a from './Myposts.module.css'
 import {Post} from './Post/Post';
-import {MapDispatchToPropsType, MapStateToPropsType, UsersDispatchPropsType} from './MypostsContainer';
+import { UsersDispatchPropsType} from './MypostsContainer';
 
 
 export const MyPosts: React.FC<UsersDispatchPropsType> = (props) => {

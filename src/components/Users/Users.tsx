@@ -1,29 +1,18 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {UsersPropsType} from './UsersContainer';
-import {v1} from 'uuid';
+import axios from 'axios';
+import avatar from '../../logo/avatar.jpg'
 
 
 export const Users: React.FC<UsersPropsType> = (props) => {
 
+    useEffect(()=> {
     if (!props.users.length) {
-        props.setUsers([
-            {
-                id: v1(),
-                followed: false,
-                fullName: 'Oleg O',
-                status: 'I am funny',
-                location: {city: 'Kiev', country: 'Ukraine'}
-            },
-            {
-                id: v1(),
-                followed: true,
-                fullName: 'Alex K',
-                status: 'I am crazy dog',
-                location: {city: 'Minsk', country: 'Belarus'}
-            },
-        ]);
-    }
-
+        axios.get('https://social-network.samuraijs.com/api/1.0/users')
+            .then(response => {
+               props.setUsers(response.data.items)
+            })
+    }}, [])
 
     return (
         <div>
@@ -39,8 +28,8 @@ export const Users: React.FC<UsersPropsType> = (props) => {
                                              }}>
                     <div>
                         <img
-                            src={'https://www.pngkey.com/png/detail/114-1149878_setting-user-avatar-in-specific-size-without-breaking.png'}
-                            style={{width: '80px'}} alt={'image'}/>
+                            src={user.photos.small!==null ? user.photos.small : avatar}
+                            style={{width: '80px'}} alt={'avatar'}/>
 
                         {user.followed ?
                             <button onClick={() => {
@@ -49,16 +38,14 @@ export const Users: React.FC<UsersPropsType> = (props) => {
                             : <button onClick={() => {
                                 props.unFollow(user.id)
                             }}>Unfollow</button>}
-
                     </div>
-
                     <div>
-                        {user.fullName}
+                        {user.name}
                         <div> {user.status} </div>
                     </div>
                     <div>
-                        <div>{user.location.city}</div>
-                        <div>{user.location.country}</div>
+                        <div>city</div>
+                        <div>country</div>
                     </div>
                 </div>)
             }

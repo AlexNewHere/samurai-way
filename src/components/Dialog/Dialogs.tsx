@@ -8,7 +8,6 @@ import {DialogsPropsType} from './DialogsContainer';
 
 
 export const Dialogs: React.FC<DialogsPropsType> = (props) => {
-debugger
     const dialogsElements = props.dialogs.map(d =>
         <DialogItem name={d.name} key={d.id}/>)
 

@@ -1,14 +1,20 @@
-export type CityType = {
-    city: string
-    country: string
+// export type CityType = {
+//     city: string
+//     country: string
+// }
+
+export type PhotoType = {
+    small?: string | null
+    large?: string | null
 }
 
 export type PostType = {
-    fullName: string
+    name: string
     id: string
+    photos: PhotoType
     status: string
     followed: boolean
-    location: CityType
+    // location: CityType
 }
 export type UsersPageType = {
     users: Array<PostType>
