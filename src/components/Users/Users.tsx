@@ -4,7 +4,6 @@ import axios from 'axios';
 import avatar from '../../logo/avatar.jpg'
 import {UsersPageType} from '../../Redux/UsersReducer';
 
-
 export const Users: React.FC<UsersPropsType> = (props) => {
 
     useEffect(()=> {

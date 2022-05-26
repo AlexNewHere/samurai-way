@@ -4,7 +4,6 @@ import {Dispatch} from 'redux';
 import {Users} from './Users';
 import {followAC, PostType, setUsersAC, unFollowAC} from '../../Redux/UsersReducer';
 
-
 export type MapStateToPropsType = {
     items: Array<PostType>
 }

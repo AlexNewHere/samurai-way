@@ -13,5 +13,4 @@ let rootReducers = combineReducers({
 
 let store = legacy_createStore(rootReducers)
 
-
 export default store
