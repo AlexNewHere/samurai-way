@@ -1,56 +1,62 @@
-import React, {useEffect} from 'react';
-import {UsersPropsType} from './UsersContainer';
+import React, {ChangeEvent, useEffect} from 'react';
 import axios from 'axios';
-import avatar from '../../logo/avatar.jpg'
-import {UsersPageType} from '../../Redux/UsersReducer';
+import './UserComponents/users.css'
+import {useAppDispatch, useAppSelector} from '../../store/hooks';
+import {setUsers, setPageSize, setCurrentPage, toggleIsFetching} from '../../store/features/users/usersSlice';
+import {CardUser} from './UserComponents/CardUser';
+import Preloader from './UserComponents/Preloader';
 
-export const Users: React.FC<UsersPropsType> = (props) => {
+export const Users = () => {
 
-    useEffect(()=> {
+    const {items, totalCount, pageSize, currentPage, isFetching} = useAppSelector((state) => state.users);
+    const dispatch = useAppDispatch()
 
-        axios.get<UsersPageType>('https://social-network.samuraijs.com/api/1.0/users')
+    useEffect(() => {
+        dispatch(toggleIsFetching(true))
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${pageSize}&page=${currentPage}`)
             .then(response => {
-               props.setUsers(response.data.items)
-                console.log(response.data)
+                dispatch(setUsers(response.data))
+                dispatch(toggleIsFetching(false))
             })
-    }, [])
+    }, [pageSize, currentPage])
+
+    let pagesCount: number = Math.ceil(totalCount / pageSize)
+    let pagesArray = []
+    for (let i = 1; i <= pagesCount; i++) {
+        pagesArray.push(i)
+    }
+
+    const onPageSizeChange = (e: ChangeEvent<HTMLSelectElement>) => {
+        dispatch(setPageSize(Number(e.currentTarget.value)))
+    }
 
     return (
         <div>
+            <div className="pagination">
+                <div className="number">
+                    {pagesArray.map(el => {
+                        return <button className={el === currentPage ? 'button active' : 'button'}
+                                       onClick={() => {
+                                           dispatch(setCurrentPage(el))
+                                       }}>{el}</button>
 
-            {
-                props.items.map(user => <div key={user.id}
-                                             style={{
-                                                 display: 'grid',
-                                                 width: '50%',
-                                                 gridTemplateColumns: '1fr 3fr 1fr',
-                                                 margin: '15px',
-                                                 backgroundColor: '#F3BF88FF',
-                                                 padding: '5px'
-                                             }}>
-                    <div>
-                        <img
-                            src={user.photos.small!==null ? user.photos.small : avatar}
-                            style={{width: '80px'}} alt={'avatar'}/>
+                    })}
+                </div>
+                <select className="select" onChange={onPageSizeChange}>
+                    <option>10</option>
+                    <option>20</option>
+                    <option>30</option>
+                </select>
+            </div>
 
-                        {user.followed ?
-                            <button onClick={() => {
-                                props.onFollow(user.id)
-                            }}>Follow</button>
-                            : <button onClick={() => {
-                                props.unFollow(user.id)
-                            }}>Unfollow</button>}
-                    </div>
-                    <div>
-                        {user.name}
-                        <div> {user.status} </div>
-                    </div>
-                    <div>
-                        <div>city</div>
-                        <div>country</div>
-                    </div>
-                </div>)
+            {isFetching ? <Preloader/> :
+                <CardUser
+                    items={items}
+                    follow={(action) => dispatch(action)}
+                />
             }
+
+
         </div>
     );
 };

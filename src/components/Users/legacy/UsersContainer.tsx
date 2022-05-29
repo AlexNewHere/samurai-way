@@ -1,8 +1,8 @@
 import {connect} from 'react-redux';
-import {RootReducerType} from '../../Redux/redux-store';
+import {RootReducerType} from '../../../Redux/redux-store';
 import {Dispatch} from 'redux';
-import {Users} from './Users';
-import {followAC, PostType, setUsersAC, unFollowAC} from '../../Redux/UsersReducer';
+import {Users} from '../Users';
+import {followAC, PostType, setUsersAC, unFollowAC} from '../../../Redux/UsersReducer';
 
 export type MapStateToPropsType = {
     items: Array<PostType>
@@ -35,4 +35,4 @@ let mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
     }
 }
 
-export const UsersContainer = connect<MapStateToPropsType, MapDispatchToPropsType, {}, RootReducerType>(mapStateToProps, mapDispatchToProps)(Users)
+const UsersContainer = connect<MapStateToPropsType, MapDispatchToPropsType, {}, RootReducerType>(mapStateToProps, mapDispatchToProps)(Users)

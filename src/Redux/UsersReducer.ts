@@ -20,13 +20,13 @@ export type PostType = {
 export type UsersPageType = {
     items: Array<PostType>
 }
+type ActionsType = ReturnType<typeof followAC> |
+    ReturnType<typeof unFollowAC> |
+    ReturnType<typeof setUsersAC>
 
 let initialState: UsersPageType = {
     items: []
 }
-type ActionsType = ReturnType<typeof followAC> |
-    ReturnType<typeof unFollowAC> |
-    ReturnType<typeof setUsersAC>
 
 
 export const usersReducer = (state: UsersPageType = initialState,

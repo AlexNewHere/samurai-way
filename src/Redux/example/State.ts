@@ -1,6 +1,6 @@
 import {v1} from 'uuid';
-import {addPostActionCreator, newPostTextActionCreator, profileReducer} from './ProfileReducer';
-import {addMessageActionCreator, dialogsReducer, newMessageActionCreator} from './DialogsReducer';
+import {addPostActionCreator, newPostTextActionCreator} from '../ProfileReducer';
+import {addMessageActionCreator, newMessageActionCreator} from '../DialogsReducer';
 
 type PostType = {
     post: string
@@ -78,7 +78,7 @@ const store: storeType = {
         store._onChange = observer;
     },
 
-    dispatch(action) {
+    dispatch() {
         // this._state.profilePage=profileReducer(this._state.profilePage, action);
         // this._state.dialogsPage=dialogsReducer(this._state.dialogsPage, action);
         this._onChange()
