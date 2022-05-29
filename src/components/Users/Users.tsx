@@ -11,7 +11,7 @@ export const Users = () => {
     const {items, totalCount, pageSize, currentPage, isFetching} = useAppSelector((state) => state.users);
     const dispatch = useAppDispatch()
 
-    useEffect(() => {
+    useEffect( () => {
         dispatch(toggleIsFetching(true))
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${pageSize}&page=${currentPage}`)
             .then(response => {
@@ -35,7 +35,7 @@ export const Users = () => {
             <div className="pagination">
                 <div className="number">
                     {pagesArray.map(el => {
-                        return <button className={el === currentPage ? 'button active' : 'button'}
+                        return <button key={`${el}+button`} className={el === currentPage ? 'button active' : 'button'}
                                        onClick={() => {
                                            dispatch(setCurrentPage(el))
                                        }}>{el}</button>

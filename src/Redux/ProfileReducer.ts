@@ -1,11 +1,11 @@
 import {v1} from 'uuid';
 
-export type PostType = {
+ type PostType = {
     post: string
     id: string
     likesCount: number
 }
-export type ProfilePageType = {
+ type ProfilePageType = {
     newPostText: string
     posts: Array<PostType>
 }
@@ -22,7 +22,7 @@ let initialstate: ProfilePageType = {
     ]
 }
 
-export type ActionsType =
+ type ActionsType =
     ReturnType<typeof addPostActionCreator> |
     ReturnType<typeof newPostTextActionCreator>
 

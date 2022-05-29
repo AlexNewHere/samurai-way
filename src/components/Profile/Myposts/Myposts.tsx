@@ -1,12 +1,16 @@
 import React, {ChangeEvent} from 'react';
 import a from './Myposts.module.css'
 import {Post} from './Post/Post';
-import { UsersDispatchPropsType} from './MypostsContainer';
+import {useAppDispatch, useAppSelector} from '../../../store/hooks';
+import {addPost, onPostChange} from '../../../store/features/posts/postsSlice';
 
 
-export const MyPosts: React.FC<UsersDispatchPropsType> = (props) => {
+export const MyPosts = () => {
 
-    let postsElements = props.posts.map(p =>
+    const {posts, newPostText}=useAppSelector((state)=>state.posts);
+    const dispatch= useAppDispatch()
+
+    let postsElements = posts.map(p =>
         <Post
             key={p.id}
             post={p.post}
@@ -14,12 +18,12 @@ export const MyPosts: React.FC<UsersDispatchPropsType> = (props) => {
             likesCount={p.likesCount}
         />)
 
-    const addPost = () => {
-        props.addPost()
+    const addPostClick = () => {
+        dispatch(addPost())
     }
 
-    const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.onPostChange(e.currentTarget.value)
+    const onPostChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        dispatch(onPostChange(e.currentTarget.value))
     }
 
     return (
@@ -28,10 +32,10 @@ export const MyPosts: React.FC<UsersDispatchPropsType> = (props) => {
             <div>
                 <textarea className={a.textarea}
                           placeholder={'Enter your post'}
-                          value={props.newPostText}
-                          onChange={onPostChange}/>
+                          value={newPostText}
+                          onChange={onPostChangeHandler}/>
                 <div>
-                    <button onClick={addPost}>Submit</button>
+                    <button onClick={addPostClick}>Submit</button>
                 </div>
             </div>
 

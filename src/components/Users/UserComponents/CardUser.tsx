@@ -2,6 +2,7 @@ import React from 'react';
 import avatar from '../../../logo/avatar.jpg';
 import {follow, PostType, unfollow} from '../../../store/features/users/usersSlice';
 import {AnyAction} from 'redux';
+import {NavLink} from 'react-router-dom';
 
 
 type PropsType = {
@@ -15,9 +16,11 @@ export const CardUser: React.FC<PropsType> = (props) => {
         <div className="placeUsers">
             {props.items.map(user => <div key={user.id} className="users">
                 <div>
-                    <img
+                    <NavLink to={`/content/${user.id}`}>
+                        <img
                         src={user.photos.small !== null ? user.photos.small : avatar}
                         className="imgAvatar" alt={'avatar'}/>
+                    </NavLink>
 
                     {user.followed ?
                         <button onClick={() => {

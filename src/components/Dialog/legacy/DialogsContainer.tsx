@@ -2,10 +2,10 @@ import {
     addMessageActionCreator,
     DialogType, MessageType,
     newMessageActionCreator
-} from '../../Redux/DialogsReducer';
-import {Dialogs} from "./Dialogs";
+} from '../../../Redux/DialogsReducer';
+import {Dialogs} from "../Dialogs";
 import {connect} from "react-redux";
-import {RootReducerType} from "../../Redux/redux-store";
+import {RootReducerType} from "../../../Redux/redux-store";
 import {Dispatch} from 'redux';
 
 
@@ -15,7 +15,7 @@ export type MapStateToPropsType = {
     newMessageText: string
 }
 export type MapDispatchToPropsType = {
-    onPostChange: (texgt: string) => void,
+    onPostChange: (text: string) => void,
     addPost: () => void
 }
 

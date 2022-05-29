@@ -1,8 +1,9 @@
-import {addPostActionCreator, newPostTextActionCreator, PostType} from '../../../Redux/ProfileReducer';
-import {MyPosts} from "./Myposts";
+import {addPostActionCreator, newPostTextActionCreator} from '../../../../Redux/ProfileReducer';
+import {MyPosts} from "../Myposts";
 import {connect} from "react-redux";
-import {RootReducerType} from "../../../Redux/redux-store";
+import {RootReducerType} from "../../../../Redux/redux-store";
 import {Dispatch} from 'redux'
+import {PostType} from '../../../../store/features/posts/postsSlice';
 
 export type MapStateToPropsType = {
     newPostText: string

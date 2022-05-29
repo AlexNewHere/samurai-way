@@ -3,23 +3,26 @@ import s from './Dialogs.module.css'
 import {DialogItem} from './DialogItem/DialogsItem';
 import {Message} from './Message/Messages';
 import a from '../Profile/Myposts/Myposts.module.css';
-import {DialogsPropsType} from './DialogsContainer';
+import {useAppDispatch, useAppSelector} from '../../store/hooks';
+import {addPostMessage, onPostChangeMessages} from '../../store/features/dialogs/dialogsSlice';
 
 
+export const Dialogs = () => {
+    const {dialogs, messages, newMessageText}=useAppSelector(state=>state.dialogs);
+    const dispatch=useAppDispatch();
 
-export const Dialogs: React.FC<DialogsPropsType> = (props) => {
-    const dialogsElements = props.dialogs.map(d =>
+    const dialogsElements = dialogs.map(d =>
         <DialogItem name={d.name} key={d.id}/>)
 
-    const messagesElements = props.messages.map(m =>
+    const messagesElements = messages.map(m =>
         <Message message={m.message} key={m.id}/>)
 
-    const addPost = () => {
-       props.addPost()
+    const addPostClick = () => {
+       dispatch(addPostMessage())
     }
 
-    const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.onPostChange(e.currentTarget.value)
+    const onPostChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        dispatch(onPostChangeMessages(e.currentTarget.value))
     }
 
     return (
@@ -34,10 +37,10 @@ export const Dialogs: React.FC<DialogsPropsType> = (props) => {
 
                 <textarea className={a.textarea}
                           placeholder={'Enter your post'}
-                          value={props.newMessageText}
-                          onChange={onPostChange}/>
+                          value={newMessageText}
+                          onChange={onPostChangeHandler}/>
                 <div>
-                    <button onClick={addPost}>Submit</button>
+                    <button onClick={addPostClick}>Submit</button>
                 </div>
             </div>
 

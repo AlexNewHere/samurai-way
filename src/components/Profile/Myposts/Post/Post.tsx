@@ -1,7 +1,7 @@
 import React from 'react';
 import like from './img/like.png';
 import a from './Post.module.css'
-import {PostType} from "../../../../Redux/ProfileReducer";
+import {PostType} from '../../../../store/features/posts/postsSlice';
 
 
 export const Post: React.FC<PostType> = ( {post, id, likesCount}) => {
