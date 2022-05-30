@@ -13,19 +13,21 @@ export const Profile = () => {
     const profile=useAppSelector(state=>state.profilePage);
     const dispatch=useAppDispatch()
 
-    const history=useParams<string>();
-
+    let {userId}=useParams<string>();
+    if (userId===undefined) {
+        userId='23943'
+    }
   useEffect( () => {
 
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${history.id}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
             .then(response => {
-
                 dispatch(setProfileUser(response.data));
             })
-    }, [])
+
+    }, [userId])
 
 
-    console.log(profile);
+    console.log(userId);
     return (
         <div className={a.content}>
             <ProfileInfo {...profile}/>

@@ -22,7 +22,10 @@ export const App = () => {
                     <Route path="/dialogs/*"
                            element={<Dialogs/>}
                     />
-                    <Route path="/content/:id"
+                    <Route path="/content/:userId"
+                           element={<Profile/>}
+                    />
+                    <Route path="/content"
                            element={<Profile/>}
                     />
                     <Route path="/users"
