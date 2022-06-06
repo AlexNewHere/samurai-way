@@ -39,7 +39,6 @@ export const profileSlice = createSlice({
     initialState,
     reducers: {
             setProfileUser: (state, action: PayloadAction<ProfileUserType>) => {
-
             return action.payload
         },
         // setPageSize: (state, action: PayloadAction<number>) => {

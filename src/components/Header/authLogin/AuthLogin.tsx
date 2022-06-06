@@ -1,29 +1,27 @@
 import React, {useEffect} from 'react';
 import {useAppDispatch, useAppSelector} from '../../../store/hooks';
 import {toggleIsFetching} from '../../../store/features/users/usersSlice';
-import axios from 'axios';
 import {setAuthUserData} from '../../../store/features/authLogin/authSlice';
+import {authApi} from '../../../api/getApi';
 
 export const AuthLogin = () => {
 
     const {login, isAuth} = useAppSelector((state) => state.authPage);
     const dispatch = useAppDispatch()
 
-    useEffect( () => {
+    useEffect(() => {
         dispatch(toggleIsFetching(true))
-        axios.get(`https://social-network.samuraijs.com/api/1.0//auth/me`, {withCredentials: true})
+        authApi()
             .then(response => {
-                if (response.data.resultCode===0) {
-                    dispatch(setAuthUserData(response.data.data))
+                if (response.resultCode === 0) {
+                    dispatch(setAuthUserData(response.data))
                 }
             })
     }, [isAuth])
 
-
-    console.log(isAuth)
     return (
         <div>
-Hello {login}
+            Hello {login}
         </div>
     );
 };

@@ -1,10 +1,10 @@
 import React, {ChangeEvent, useEffect} from 'react';
-import axios from 'axios';
 import './UserComponents/users.css'
 import {useAppDispatch, useAppSelector} from '../../store/hooks';
 import {setUsers, setPageSize, setCurrentPage, toggleIsFetching} from '../../store/features/users/usersSlice';
 import {CardUser} from './UserComponents/CardUser';
 import Preloader from './UserComponents/Preloader';
+import {getUsersApi} from '../../api/getApi';
 
 export const Users = () => {
 
@@ -13,9 +13,9 @@ export const Users = () => {
 
     useEffect( () => {
         dispatch(toggleIsFetching(true))
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${pageSize}&page=${currentPage}`, {withCredentials: true})
+        getUsersApi(pageSize, currentPage)
             .then(response => {
-                dispatch(setUsers(response.data))
+                dispatch(setUsers(response))
                 dispatch(toggleIsFetching(false))
             })
     }, [pageSize, currentPage])
