@@ -6,15 +6,10 @@ import avatar from '../../../logo/avatar.jpg';
 export const ProfileInfo = (props: ProfileUserType) => {
 
 
-
     return (
         <div className={a.content}>
-            <div>
-                <img className={a.img}
-                src="https://www.researchgate.net/profile/Georg-Waltner-2/publication/329620436/figure/fig1/AS:759099822206979@1557994909846/Image-sequence-and-views-of-the-reconstructed-point-cloud-a-j-images-from-the.ppm"
-                alt="Обои"/>
-            </div>
-            <img src={props.photos.large !== null ? props.photos.large : avatar} alt=""/>
+
+            <img src={props.photos.large !== null ? props.photos.large : avatar} alt="userAvatar"/>
 
             <div>
                 <div>{props.fullName}</div>

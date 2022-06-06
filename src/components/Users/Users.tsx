@@ -13,7 +13,7 @@ export const Users = () => {
 
     useEffect( () => {
         dispatch(toggleIsFetching(true))
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${pageSize}&page=${currentPage}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${pageSize}&page=${currentPage}`, {withCredentials: true})
             .then(response => {
                 dispatch(setUsers(response.data))
                 dispatch(toggleIsFetching(false))
@@ -26,7 +26,7 @@ export const Users = () => {
         pagesArray.push(i)
     }
 
-    const onPageSizeChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    const pageSizeHandler = (e: ChangeEvent<HTMLSelectElement>) => {
         dispatch(setPageSize(Number(e.currentTarget.value)))
     }
 
@@ -35,14 +35,14 @@ export const Users = () => {
             <div className="pagination">
                 <div className="number">
                     {pagesArray.map(el => {
-                        return <button key={`${el}+button`} className={el === currentPage ? 'button active' : 'button'}
+                        return <button key={`${el}+button`} className={el === currentPage ? 'button active_btn' : 'button'}
                                        onClick={() => {
                                            dispatch(setCurrentPage(el))
                                        }}>{el}</button>
 
                     })}
                 </div>
-                <select className="select" onChange={onPageSizeChange}>
+                <select className="select" onChange={pageSizeHandler}>
                     <option>10</option>
                     <option>20</option>
                     <option>30</option>

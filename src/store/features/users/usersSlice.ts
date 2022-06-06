@@ -36,11 +36,11 @@ export const usersSlice = createSlice({
     initialState,
     reducers: {
         follow: (state, action: PayloadAction<string>) => {
-            state.items.map(u => u.id === action.payload ? u.followed = false : u)
+            state.items.map(u => u.id === action.payload ? u.followed = true : u)
         },
         unfollow: (state, action: PayloadAction<string>) => {
 
-            state.items.map(u => u.id === action.payload ? u.followed = true : u)
+            state.items.map(u => u.id === action.payload ? u.followed = false : u)
         },
         setUsers: (state, action: PayloadAction<UsersPageType>) => {
             state.items = action.payload.items

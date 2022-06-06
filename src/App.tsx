@@ -7,6 +7,7 @@ import {Footer} from './components/Footer/Footer';
 import {Route, Routes} from 'react-router-dom';
 import {Users} from './components/Users/Users';
 import {Dialogs} from './components/Dialog/Dialogs';
+import {AuthLogin} from './components/Header/authLogin/AuthLogin';
 
 
 export const App = () => {
@@ -30,6 +31,9 @@ export const App = () => {
                     />
                     <Route path="/users"
                            element={<Users/>}
+                    />
+                    <Route path="/login"
+                           element={<AuthLogin/>}
                     />
                 </Routes>
             </div>

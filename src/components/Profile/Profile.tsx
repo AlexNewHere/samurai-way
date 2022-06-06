@@ -3,15 +3,15 @@ import a from './Profile.module.css'
 import {ProfileInfo} from './ProfileInfo/ProfileInfo';
 import {MyPosts} from './Myposts/Myposts';
 import axios from 'axios';
-import {useAppDispatch, useAppSelector} from '../../store/hooks';
-import {setProfileUser} from '../../store/features/userFrofile/profileSlice';
+import {useAppSelector} from '../../store/hooks';
 import {useParams} from 'react-router-dom';
+import {ProfileAction} from '../../store/features/userFrofile/profileAction';
 
 
 export const Profile = () => {
 
     const profile=useAppSelector(state=>state.profilePage);
-    const dispatch=useAppDispatch()
+    const {setProfileUser}=ProfileAction()
 
     let {userId}=useParams<string>();
     if (userId===undefined) {
@@ -21,13 +21,13 @@ export const Profile = () => {
 
         axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
             .then(response => {
-                dispatch(setProfileUser(response.data));
+                setProfileUser(response.data);
             })
 
     }, [userId])
 
 
-    console.log(userId);
+
     return (
         <div className={a.content}>
             <ProfileInfo {...profile}/>

@@ -1,7 +1,18 @@
 .header {
     grid-area: header;
+display: flex;
+    justify-content: space-between;
+    align-items: center;
     background-color: cadetblue;
 }
-.header img {
+.img_logo {
     width: 50px;
+}
+.loginBlock {
+    text-decoration: none;
+}
+
+.activeBlock {
+
+    color: white;
 }

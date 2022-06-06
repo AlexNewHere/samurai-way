@@ -3,7 +3,7 @@ import {bindActionCreators} from 'redux';
 import {profileSlice} from './profileSlice';
 
 
- const UsersAction = () => {
+export const ProfileAction = () => {
     const dispatch = useAppDispatch();
     return bindActionCreators(profileSlice.actions, dispatch);
 };

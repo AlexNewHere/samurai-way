@@ -40,15 +40,16 @@
     border-radius: 50%;
     background-color: rgba(243, 191, 136, 0.78);
     color: #000;
-margin: 5px;
+    margin: 5px;
     cursor: pointer;
 }
+
 .button:hover {
     background-color: rgba(183, 166, 81, 0.78);
 
 }
 
-.active {
+.active_btn {
     font-size: 1.5em;
     background-color: rgba(183, 166, 81, 0.78);
 }
