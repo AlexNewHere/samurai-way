@@ -8,7 +8,7 @@ import {getUsersApi} from '../../api/getApi';
 
 export const Users = () => {
 
-    const {items, totalCount, pageSize, currentPage, isFetching} = useAppSelector((state) => state.users);
+    const {items, totalCount, pageSize, currentPage, isFetching, followingIsProgress} = useAppSelector((state) => state.users);
     const dispatch = useAppDispatch()
 
     useEffect( () => {
@@ -52,7 +52,9 @@ export const Users = () => {
             {isFetching ? <Preloader/> :
                 <CardUser
                     items={items}
+                    followingIsProgress={followingIsProgress}
                     follow={(action) => dispatch(action)}
+                    followProgress={(action) => dispatch(action)}
                 />
             }
 

@@ -4,7 +4,10 @@ export type PhotoType = {
     small?: string | null
     large?: string | null
 }
-
+interface ActionFallowProgressType {
+    id: string
+    isFalse: boolean
+}
 export type PostType = {
     name: string
     id: string
@@ -21,6 +24,7 @@ export type UsersPageType = {
     pageSize: number
     currentPage: number
     isFetching: boolean
+    followingIsProgress: Array<string>
 }
 let initialState: UsersPageType = {
     items: [],
@@ -28,7 +32,8 @@ let initialState: UsersPageType = {
     error: null,
     pageSize: 10,
     currentPage: 1,
-    isFetching: false
+    isFetching: false,
+    followingIsProgress: []
 }
 
 export const usersSlice = createSlice({
@@ -54,9 +59,13 @@ export const usersSlice = createSlice({
         },
         toggleIsFetching: (state, action: PayloadAction<boolean>) => {
             state.isFetching = action.payload
-        }
+        },
+        toggleIsFollowing: (state, action: PayloadAction<ActionFallowProgressType>) => {
 
+            action.payload.isFalse? state.followingIsProgress.push(action.payload.id): state.followingIsProgress.filter(el=>el!==action.payload.id? el: '')
+
+        }
     }
 })
 
-export const {follow, unfollow, setUsers, setPageSize, setCurrentPage, toggleIsFetching} = usersSlice.actions
+export const {follow, unfollow, setUsers, setPageSize, setCurrentPage, toggleIsFetching, toggleIsFollowing} = usersSlice.actions
