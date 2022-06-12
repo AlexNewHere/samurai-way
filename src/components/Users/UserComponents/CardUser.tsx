@@ -28,7 +28,6 @@ export const CardUser: React.FC<PropsType> = (props) => {
                     {user.followed ?
                         <button disabled={props.followingIsProgress.some(id => id === user.id)}
                                 onClick={() => {
-
                                     props.followProgress(toggleIsFollowing({id: user.id, isFalse: true}))
                                     unfallowApi(user.id)
                                         .then(response => {

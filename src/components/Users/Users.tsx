@@ -1,23 +1,28 @@
 import React, {ChangeEvent, useEffect} from 'react';
 import './UserComponents/users.css'
 import {useAppDispatch, useAppSelector} from '../../store/hooks';
-import {setUsers, setPageSize, setCurrentPage, toggleIsFetching} from '../../store/features/users/usersSlice';
+import {
+    setPageSize,
+    setCurrentPage,
+    getUsersThunk
+} from '../../store/features/users/usersSlice';
 import {CardUser} from './UserComponents/CardUser';
 import Preloader from './UserComponents/Preloader';
-import {getUsersApi} from '../../api/getApi';
 
 export const Users = () => {
 
-    const {items, totalCount, pageSize, currentPage, isFetching, followingIsProgress} = useAppSelector((state) => state.users);
+    const {
+        items,
+        totalCount,
+        pageSize,
+        currentPage,
+        isFetching,
+        followingIsProgress
+    } = useAppSelector((state) => state.users);
     const dispatch = useAppDispatch()
 
-    useEffect( () => {
-        dispatch(toggleIsFetching(true))
-        getUsersApi(pageSize, currentPage)
-            .then(response => {
-                dispatch(setUsers(response))
-                dispatch(toggleIsFetching(false))
-            })
+    useEffect(() => {
+        dispatch(getUsersThunk({pageSize, currentPage}))
     }, [pageSize, currentPage])
 
     let pagesCount: number = Math.ceil(totalCount / pageSize)
@@ -35,7 +40,8 @@ export const Users = () => {
             <div className="pagination">
                 <div className="number">
                     {pagesArray.map(el => {
-                        return <button key={`${el}+button`} className={el === currentPage ? 'button active_btn' : 'button'}
+                        return <button key={`${el}+button`}
+                                       className={el === currentPage ? 'button active_btn' : 'button'}
                                        onClick={() => {
                                            dispatch(setCurrentPage(el))
                                        }}>{el}</button>

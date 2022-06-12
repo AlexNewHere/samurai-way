@@ -11,8 +11,11 @@ export const store = configureStore({
         posts: postsSlice.reducer,
         dialogs: dialogsSlice.reducer,
         profilePage: profileSlice.reducer,
-        authPage: authSlice.reducer
-    }
+        authPage: authSlice.reducer,
+
+    },
+
+
 })
 
 export type RootState = ReturnType<typeof store.getState>
