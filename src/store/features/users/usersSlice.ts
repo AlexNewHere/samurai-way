@@ -1,5 +1,6 @@
 import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {instance} from '../../../api';
+import {RootState} from '../../store';
 
 export type PhotoType = {
     small?: string | null
@@ -43,12 +44,13 @@ let initialState: UsersPageType = {
 
 export const getUsersThunk = createAsyncThunk(
     'users/getUsersThunk',
-    async function ({pageSize, currentPage}: { pageSize: number, currentPage: number }, thunkAPI){
+    async function (_, thunkAPI) {
+        const stateToThunk = thunkAPI.getState() as RootState
         try {
-            const response = await instance.get(`/users?count=${pageSize}&page=${currentPage}`)
+            const response = await instance.get(`/users?count=${stateToThunk.users.pageSize}&page=${stateToThunk.users.currentPage}`)
             return response.data
         } catch (e) {
-            return thunkAPI.rejectWithValue('Не удалось загрузить пользователей')
+            return thunkAPI.rejectWithValue('Не удалось загрузить пользователей - ' + e)
         }
     })
 
@@ -88,7 +90,7 @@ export const usersSlice = createSlice({
             state.totalCount = action.payload.totalCount
         })
         builder.addCase(getUsersThunk.rejected, (state, action) => {
-            console.log('rejected  ' + action.payload)
+            console.log(action.payload)
         })
     }
 })

@@ -22,7 +22,7 @@ export const Users = () => {
     const dispatch = useAppDispatch()
 
     useEffect(() => {
-        dispatch(getUsersThunk({pageSize, currentPage}))
+        dispatch(getUsersThunk())
     }, [pageSize, currentPage])
 
     let pagesCount: number = Math.ceil(totalCount / pageSize)
