@@ -4,12 +4,10 @@ import {
     changeFallowThunk,
     follow,
     PostType,
-    toggleIsFollowing,
     unfollow
 } from '../../../store/features/users/usersSlice';
 import {AnyAction} from 'redux';
 import {NavLink} from 'react-router-dom';
-import {fallowApi, unfallowApi} from '../../../api/getApi';
 import {useAppDispatch} from "../../../store/hooks";
 
 
@@ -37,28 +35,11 @@ export const CardUser: React.FC<PropsType> = (props) => {
                     {user.followed ?
                         <button disabled={props.followingIsProgress.some(id => id === user.id)}
                                 onClick={() => {
-
                                     dispatch(changeFallowThunk({id: user.id, btnType: 'unfollow'}))
-
-                                    // props.followProgress(toggleIsFollowing({id: user.id, isFalse: true}))
-                                    // unfallowApi(user.id)
-                                    //     .then(response => {
-                                    //         if (response.resultCode === 0) {
-                                    //             props.follow(unfollow(user.id))
-                                    //         }
-                                    //         props.followProgress(toggleIsFollowing({id: user.id, isFalse: false}))
-                                    //     })
                                 }}>Unfollow</button>
                         : <button disabled={props.followingIsProgress.some(id => id === user.id)}
                                   onClick={() => {
-                                      props.followProgress(toggleIsFollowing({id: user.id, isFalse: true}))
-                                      fallowApi(user.id)
-                                          .then(response => {
-                                              if (response.resultCode === 0) {
-                                                  props.follow(follow(user.id))
-                                              }
-                                              props.followProgress(toggleIsFollowing({id: user.id, isFalse: false}))
-                                          })
+                                      dispatch(changeFallowThunk({id: user.id, btnType: 'follow'}))
                                   }}>Follow</button>}
                 </div>
                 <div>

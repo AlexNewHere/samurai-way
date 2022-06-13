@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {FallowType} from '../store/features/users/usersSlice';
 
 export const instance = axios.create({
     withCredentials: true,
@@ -24,13 +25,13 @@ export const authApi = () => {
 
 export const unfallowApi = (id: string) => {
     return (
-        instance.delete(`/follow/${id}`)
+        instance.delete<FallowType>(`/follow/${id}`)
             .then(response => response.data)
     )
 }
 export const fallowApi = (id: string) => {
     return (
-        instance.post(`/follow/${id}`)
+        instance.post<FallowType>(`/follow/${id}`)
             .then(response => response.data)
     )
 }
