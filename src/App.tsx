@@ -1,13 +1,13 @@
 import React from 'react';
 import './App.css';
-import {Header} from './components/Header/Header';
+import {Header} from 'components/Header';
 import {Navbar} from './components/Navbar/Navbar';
 import {Profile} from './components/Profile/Profile';
 import {Footer} from './components/Footer/Footer';
 import {Route, Routes} from 'react-router-dom';
 import {Users} from './components/Users/Users';
-import {Dialogs} from './components/Dialog/Dialogs';
-import {AuthLogin} from './components/Header/authLogin/AuthLogin';
+import {Dialogs} from 'components/Dialog';
+import {AuthLogin} from 'components/Header';
 
 
 export const App = () => {

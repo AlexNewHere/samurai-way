@@ -2,14 +2,11 @@ import React from 'react';
 import avatar from '../../../logo/avatar.jpg';
 import {
     changeFallowThunk,
-    follow,
     PostType,
-    unfollow
 } from '../../../store/features/users/usersSlice';
 import {AnyAction} from 'redux';
 import {NavLink} from 'react-router-dom';
-import {useAppDispatch} from "../../../store/hooks";
-
+import {useAppDispatch} from '../../../store/hooks';
 
 type PropsType = {
     items: Array<PostType>

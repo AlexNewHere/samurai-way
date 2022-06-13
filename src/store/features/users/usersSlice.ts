@@ -1,6 +1,6 @@
 import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {fallowApi, instance, unfallowApi} from 'api';
-import {RootState} from '../../store';
+import {AppDispatch, RootState} from '../../store';
 
 export type PhotoType = {
     small?: string | null
@@ -57,13 +57,14 @@ let initialState: UsersPageType = {
     followingIsProgress: []
 }
 
+
 type GetUsersType = {
     items: UserType[]
     error: string | null
     totalCount: number
 }
 
-export const getUsersThunk = createAsyncThunk<GetUsersType, void, { state: RootState }>(
+export const getUsersThunk = createAsyncThunk<GetUsersType, void, { state: RootState, dispatch: AppDispatch }>(
     'users/getUsersThunk',
     async function (_, thunkAPI) {
         const stateThunk = thunkAPI.getState()
@@ -75,7 +76,7 @@ export const getUsersThunk = createAsyncThunk<GetUsersType, void, { state: RootS
         }
     })
 
-export const changeFallowThunk = createAsyncThunk<void, { id: string, btnType: string }>(
+export const changeFallowThunk = createAsyncThunk<void, { id: string, btnType: string },{dispatch: AppDispatch} >(
     'users/changeFallowThunk',
     async function ({id, btnType}, thunkAPI) {
         thunkAPI.dispatch(toggleIsFollowing({id, isFalse: true}))
@@ -142,13 +143,13 @@ export const usersSlice = createSlice({
         builder.addCase(getUsersThunk.rejected, (state, action) => {
             console.log(action.payload)
         })
-        builder.addCase(changeFallowThunk.pending, (state) => {
+        builder.addCase(changeFallowThunk.pending, () => {
             console.log('button pending')
         })
-        builder.addCase(changeFallowThunk.fulfilled, (state, action) => {
+        builder.addCase(changeFallowThunk.fulfilled, () => {
             console.log('button fulfilled')
         })
-        builder.addCase(changeFallowThunk.rejected, (state, action) => {
+        builder.addCase(changeFallowThunk.rejected, (_, action) => {
             console.log(action.payload)
         })
     }

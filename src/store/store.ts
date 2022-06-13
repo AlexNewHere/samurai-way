@@ -1,5 +1,5 @@
 import {configureStore} from '@reduxjs/toolkit';
-import {getUsersThunk, usersSlice} from './features/users/usersSlice';
+import {usersSlice} from './features/users/usersSlice';
 import {postsSlice} from './features/posts/postsSlice';
 import {dialogsSlice} from './features/dialogs/dialogsSlice';
 import {profileSlice} from './features/userFrofile/profileSlice';

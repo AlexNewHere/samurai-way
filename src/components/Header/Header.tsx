@@ -8,7 +8,7 @@ const linkActive = ({isActive}: { isActive: boolean }) => isActive ? `${s.loginB
 
 export const Header = () =>{
 
-    const {login,isAuth} = useAppSelector((state) => state.authPage);
+    const {login, isAuth} = useAppSelector((state) => state.authPage);
 
     return (
     <header className={s.header}>
