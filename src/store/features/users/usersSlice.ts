@@ -1,6 +1,7 @@
 import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {instance} from '../../../api';
 import {RootState} from '../../store';
+import {rejects} from "assert";
 
 export type PhotoType = {
     small?: string | null
@@ -45,14 +46,37 @@ let initialState: UsersPageType = {
 export const getUsersThunk = createAsyncThunk(
     'users/getUsersThunk',
     async function (_, thunkAPI) {
-        const stateToThunk = thunkAPI.getState() as RootState
+        const stateThunk = thunkAPI.getState() as RootState
         try {
-            const response = await instance.get(`/users?count=${stateToThunk.users.pageSize}&page=${stateToThunk.users.currentPage}`)
+            const response = await instance.get(`/users?count=${stateThunk.users.pageSize}&page=${stateThunk.users.currentPage}`)
             return response.data
         } catch (e) {
             return thunkAPI.rejectWithValue('Не удалось загрузить пользователей - ' + e)
         }
     })
+
+export const changeFallowThunk = createAsyncThunk(
+    'users/changeFallowThunk',
+    async function ({id, btnType}: { id: string, btnType: string }, thunkAPI) {
+        thunkAPI.dispatch(toggleIsFollowing({id, isFalse: true}))
+        try {
+            switch (btnType) {
+                case 'follow': {
+                    const response = await instance.post(`/follow/${id}`)
+
+                    return response.data
+                }
+                case 'unfollow': {
+                    const response = await instance.delete(`/follow/${id}`)
+                    console.log(response.data)
+                    return response.data
+                }
+            }
+        } catch (e) {
+            return thunkAPI.rejectWithValue('Не удалось изменить подписку - ' + e)
+        }
+    }
+)
 
 export const usersSlice = createSlice({
     name: 'users',
@@ -90,6 +114,15 @@ export const usersSlice = createSlice({
             state.totalCount = action.payload.totalCount
         })
         builder.addCase(getUsersThunk.rejected, (state, action) => {
+            console.log(action.payload)
+        })
+        builder.addCase(changeFallowThunk.pending, (state) => {
+
+        })
+        builder.addCase(changeFallowThunk.fulfilled, (state, action) => {
+
+        })
+        builder.addCase(changeFallowThunk.rejected, (state, action) => {
             console.log(action.payload)
         })
     }

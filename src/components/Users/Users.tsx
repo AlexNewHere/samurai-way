@@ -55,7 +55,8 @@ export const Users = () => {
                 </select>
             </div>
 
-            {isFetching ? <Preloader/> :
+            {isFetching ?
+                <Preloader/> :
                 <CardUser
                     items={items}
                     followingIsProgress={followingIsProgress}
