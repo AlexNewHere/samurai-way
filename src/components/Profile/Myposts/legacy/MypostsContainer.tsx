@@ -3,17 +3,17 @@ import {MyPosts} from "../Myposts";
 import {connect} from "react-redux";
 import {RootReducerType} from "../../../../Redux/redux-store";
 import {Dispatch} from 'redux'
-import {PostType} from '../../../../store/features/posts/postsSlice';
+import {PostType} from '../../../../store/features/posts';
 
-export type MapStateToPropsType = {
+type MapStateToPropsType = {
     newPostText: string
     posts: Array<PostType>
 }
-export type MapDispatchToPropsType = {
+type MapDispatchToPropsType = {
     onPostChange: (post: string) => void,
     addPost: () => void
 }
-export type UsersDispatchPropsType = MapStateToPropsType & MapDispatchToPropsType
+type UsersDispatchPropsType = MapStateToPropsType & MapDispatchToPropsType
 
 let mapStoreToProps = (state: RootReducerType): MapStateToPropsType=>{
     return {
@@ -33,4 +33,4 @@ let mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
     }
 }
 
-export const MyPostsContainer = connect<MapStateToPropsType, MapDispatchToPropsType, {}, RootReducerType>(mapStoreToProps, mapDispatchToProps)(MyPosts)
+const MyPostsContainer = connect<MapStateToPropsType, MapDispatchToPropsType, {}, RootReducerType>(mapStoreToProps, mapDispatchToProps)(MyPosts)

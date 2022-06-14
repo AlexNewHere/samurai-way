@@ -1,7 +1,7 @@
 import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {fallowApi, instance, unfallowApi} from 'api';
-import {AppDispatch, RootState} from '../../store';
-import {ActionFallowProgressType, GetUsersType, UsersPageType} from './userTypes';
+import {AppDispatch, RootState} from '../../index';
+import {ActionFallowProgressType, GetUsersType, UsersPageType} from './index';
+import {fallowApi, getUsersApi, unfallowApi} from './usersApi';
 
 
 let initialState: UsersPageType = {
@@ -14,15 +14,12 @@ let initialState: UsersPageType = {
     followingIsProgress: []
 }
 
-
-
 export const getUsersThunk = createAsyncThunk<GetUsersType, void, { state: RootState, dispatch: AppDispatch }>(
     'users/getUsersThunk',
     async function (_, thunkAPI) {
         const stateThunk = thunkAPI.getState()
         try {
-            const response = await instance.get<GetUsersType>(`/users?count=${stateThunk.users.pageSize}&page=${stateThunk.users.currentPage}`)
-            return response.data
+             return await getUsersApi(stateThunk.users.pageSize, stateThunk.users.currentPage)
         } catch (e) {
             return thunkAPI.rejectWithValue('Не удалось загрузить пользователей - ' + e)
         }
@@ -110,8 +107,6 @@ export const usersSlice = createSlice({
 export const {
     follow,
     unfollow,
-    setPageSize,
-    setCurrentPage,
     toggleIsFetching,
     toggleIsFollowing
 } = usersSlice.actions

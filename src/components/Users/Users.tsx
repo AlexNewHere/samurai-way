@@ -20,7 +20,6 @@ export const Users = () => {
         dispatch(getUsersThunk())
     }, [pageSize, currentPage, dispatch])
 
-
     return (
         <div>
             <Pagination/>

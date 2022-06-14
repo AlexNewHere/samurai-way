@@ -1,21 +1,24 @@
-import React from 'react';
+import React, {FC} from 'react';
 import a from './ProfileInfo.module.css'
-import {ProfileUserType} from '../../../store/features/userFrofile/profileSlice';
 import avatar from '../../../logo/avatar.jpg';
+import {ProfileUserType} from '../../../store/features/userFrofile';
 
-export const ProfileInfo = (props: ProfileUserType) => {
-
-
+export const ProfileInfo: FC<ProfileUserType> = ({
+                                                     aboutMe,
+                                                     contacts,
+                                                     fullName,
+                                                     photos
+                                                 }) => {
     return (
         <div className={a.content}>
 
-            <img src={props.photos.large !== null ? props.photos.large : avatar} alt="userAvatar"/>
+            <img src={photos.large !== null ? photos.large : avatar} alt="userAvatar"/>
 
             <div>
-                <div>{props.fullName}</div>
-                <div>{props.aboutMe}</div>
-                <div>{props.aboutMe}</div>
-                <div>{props.contacts.instagram}</div>
+                <div>{fullName}</div>
+                <div>{aboutMe}</div>
+                <div>{aboutMe}</div>
+                <div>{contacts.instagram}</div>
             </div>
         </div>
     )

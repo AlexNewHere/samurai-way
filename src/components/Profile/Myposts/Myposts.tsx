@@ -1,14 +1,14 @@
 import React, {ChangeEvent} from 'react';
 import a from './Myposts.module.css'
 import {Post} from './Post/Post';
-import {useAppDispatch, useAppSelector} from '../../../store/hooks';
-import {addPost, onPostChange} from '../../../store/features/posts/postsSlice';
+import {useAppSelector} from '../../../store/hooks';
+import {PostAction} from '../../../store/features/posts';
 
 
 export const MyPosts = () => {
 
-    const {posts, newPostText}=useAppSelector((state)=>state.posts);
-    const dispatch= useAppDispatch()
+    const {posts, newPostText} = useAppSelector((state) => state.posts);
+    const {onPostChange, addPost} = PostAction()
 
     let postsElements = posts.map(p =>
         <Post
@@ -19,11 +19,11 @@ export const MyPosts = () => {
         />)
 
     const addPostClick = () => {
-        dispatch(addPost())
+        addPost()
     }
 
     const onPostChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        dispatch(onPostChange(e.currentTarget.value))
+        onPostChange(e.currentTarget.value)
     }
 
     return (

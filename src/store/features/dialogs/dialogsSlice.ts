@@ -1,20 +1,6 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {v1} from 'uuid';
-import actions from 'redux-form/lib/actions';
-
-export type DialogType = {
-  name: string
-  id: string
-}
-export type MessageType = {
-  message: string
-  id: string
-}
-export type DialogsPageType = {
-  dialogs: Array<DialogType>
-  messages: Array<MessageType>
-  newMessageText: string
-}
+import {DialogsPageType} from './dialogsTypes';
 
 let initialState: DialogsPageType = {
   dialogs: [

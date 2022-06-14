@@ -12,7 +12,6 @@ export const Pagination = () => {
     const {setCurrentPage, setPageSize} = UsersAction()
 
     const paginationPage = useMemo(() => {
-        console.log('hi')
         let pagesCount: number = Math.ceil(totalCount / pageSize)
         let pagesArray = []
         for (let i = 1; i <= pagesCount; i++) {
