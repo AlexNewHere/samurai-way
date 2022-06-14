@@ -1,14 +1,14 @@
 import React from 'react';
+import {Route, Routes, Navigate} from 'react-router-dom';
 import './App.css';
 import {Header} from 'components/Header';
-import {Navbar} from './components/Navbar';
-import {Profile} from './components/Profile';
-import {Footer} from './components/Footer';
-import {Route, Routes, Navigate} from 'react-router-dom';
-import {Users} from './components/Users';
+import {Navbar} from 'components/Navbar';
+import {Profile} from 'components/Profile';
+import {Footer} from 'components/Footer';
+import {Users} from 'components/Users';
 import {Dialogs} from 'components/Dialog';
 import {AuthLogin} from 'components/Header';
-import {WithAuthRedirect} from './NavigateHOC';
+import {WithAuthRedirect} from 'Navigate';
 
 
 export const App = () => {

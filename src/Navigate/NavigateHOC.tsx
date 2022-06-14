@@ -1,5 +1,5 @@
 import {Outlet, Navigate} from 'react-router-dom';
-import {useAppSelector} from './store/hooks';
+import {useAppSelector} from '../store/hooks';
 import React from 'react';
 
 export const WithAuthRedirect = () => {
