@@ -1,8 +1,6 @@
 import React, {useEffect} from 'react';
 import {useAppDispatch, useAppSelector} from '../../../store/hooks';
-import {toggleIsFetching} from '../../../store/features/users/usersSlice';
-import {setAuthUserData} from '../../../store/features/authLogin/authSlice';
-import {authApi} from '../../../api/getApi';
+import {authMeUserThunk} from '../../../store/features/authLogin';
 
 export const AuthLogin = () => {
 
@@ -10,14 +8,8 @@ export const AuthLogin = () => {
     const dispatch = useAppDispatch()
 
     useEffect(() => {
-        dispatch(toggleIsFetching(true))
-        authApi()
-            .then(response => {
-                if (response.resultCode === 0) {
-                    dispatch(setAuthUserData(response.data))
-                }
-            })
-    }, [isAuth])
+        dispatch(authMeUserThunk())
+    }, [isAuth, dispatch])
 
     return (
         <div>

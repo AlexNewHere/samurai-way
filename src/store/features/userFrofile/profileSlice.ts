@@ -16,7 +16,7 @@ export const profileSlice = createSlice({
     name: 'profilePage',
     initialState,
     reducers: {
-            setProfileUser: (state, action: PayloadAction<ProfileUserType>) => {
+            setProfileUser: (_, action: PayloadAction<ProfileUserType>) => {
             return action.payload
         },
         // setPageSize: (state, action: PayloadAction<number>) => {

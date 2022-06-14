@@ -2,7 +2,6 @@ import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {v1} from 'uuid';
 import {ProfilePageType} from './index';
 
-
 let initialState: ProfilePageType = {
     newPostText: '',
     posts: [

@@ -4,7 +4,7 @@ import {DialogItem} from './DialogItem/DialogsItem';
 import {Message} from './Message/Messages';
 import a from '../Profile/Myposts/Myposts.module.css';
 import {useAppDispatch, useAppSelector} from '../../store/hooks';
-import {addPostMessage, onPostChangeMessages} from '../../store/features/dialogs/dialogsSlice';
+import {addPostMessage, onPostChangeMessages} from '../../store/features/dialogs';
 
 
 export const Dialogs = () => {

@@ -20,8 +20,8 @@ export const Profile = () => {
           userId='23943'
       }
       getProfileApi(userId)
-            .then(data => {
-                setProfileUser(data);
+            .then(response => {
+                setProfileUser(response);
             })
     }, [userId])
 
