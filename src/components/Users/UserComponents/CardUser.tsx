@@ -1,17 +1,11 @@
 import React from 'react';
 import avatar from '../../../logo/avatar.jpg';
-import {
-    changeFallowThunk,
-    PostType,
-} from '../../../store/features/users/usersSlice';
-import {AnyAction} from 'redux';
+import {changeFallowThunk, PostType,} from '../../../store/features/users';
 import {NavLink} from 'react-router-dom';
 import {useAppDispatch} from '../../../store/hooks';
 
 type PropsType = {
     items: Array<PostType>
-    follow: (action: AnyAction) => void
-    followProgress: (action: AnyAction) => void
     followingIsProgress: Array<string>
 }
 

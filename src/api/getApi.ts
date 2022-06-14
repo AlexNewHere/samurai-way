@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {FallowType} from '../store/features/users/usersSlice';
+import {FallowType} from '../store/features/users';
 
 export const instance = axios.create({
     withCredentials: true,

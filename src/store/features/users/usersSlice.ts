@@ -1,51 +1,8 @@
 import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {fallowApi, instance, unfallowApi} from 'api';
 import {AppDispatch, RootState} from '../../store';
+import {ActionFallowProgressType, GetUsersType, UsersPageType} from './userTypes';
 
-export type PhotoType = {
-    small?: string | null
-    large?: string | null
-}
-
-interface ActionFallowProgressType {
-    id: string
-    isFalse: boolean
-}
-
-export type PostType = {
-    name: string
-    id: string
-    photos: PhotoType
-    status: string
-    followed: boolean
-    uniqueUrlName?: string | null
-
-}
-export type UserType = {
-    name: string
-    id: string
-    photos: PhotoType
-    status: string
-    followed: boolean
-    uniqueUrlName?: string | null
-}
-
-export type UsersPageType = {
-    items: Array<PostType>
-    totalCount: number
-    error: string | null
-    pageSize: number
-    currentPage: number
-    isFetching: boolean
-    followingIsProgress: Array<string>
-}
-
-export type FallowType = {
-    data?: any
-    fieldsErrors?: any[]
-    messages?: []
-    resultCode: number
-}
 
 let initialState: UsersPageType = {
     items: [],
@@ -58,11 +15,6 @@ let initialState: UsersPageType = {
 }
 
 
-type GetUsersType = {
-    items: UserType[]
-    error: string | null
-    totalCount: number
-}
 
 export const getUsersThunk = createAsyncThunk<GetUsersType, void, { state: RootState, dispatch: AppDispatch }>(
     'users/getUsersThunk',
