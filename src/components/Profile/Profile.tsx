@@ -7,7 +7,6 @@ import {useParams} from 'react-router-dom';
 import {ProfileAction} from '../../store/features/userFrofile';
 import {getProfileApi} from '../../store/features/userFrofile/profileApi';
 
-
 export const Profile = () => {
 
     const profile=useAppSelector(state=>state.profilePage);

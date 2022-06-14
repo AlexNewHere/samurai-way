@@ -1,13 +1,14 @@
 import React from 'react';
 import './App.css';
 import {Header} from 'components/Header';
-import {Navbar} from './components/Navbar/Navbar';
-import {Profile} from './components/Profile/Profile';
-import {Footer} from './components/Footer/Footer';
-import {Route, Routes} from 'react-router-dom';
-import {Users} from './components/Users/Users';
+import {Navbar} from './components/Navbar';
+import {Profile} from './components/Profile';
+import {Footer} from './components/Footer';
+import {Route, Routes, Navigate} from 'react-router-dom';
+import {Users} from './components/Users';
 import {Dialogs} from 'components/Dialog';
 import {AuthLogin} from 'components/Header';
+import {WithAuthRedirect} from './NavigateHOC';
 
 
 export const App = () => {
@@ -20,21 +21,25 @@ export const App = () => {
             <div className="grid_wrapper_content">
 
                 <Routes>
-                    <Route path="/dialogs/*"
-                           element={<Dialogs/>}
-                    />
-                    <Route path="/content/:userId"
-                           element={<Profile/>}
-                    />
-                    <Route path="/content"
-                           element={<Profile/>}
+                    <Route path="/" element={<Navigate replace to="/login"/>}/>
+                    <Route path="/login"
+                           element={<AuthLogin/>}
                     />
                     <Route path="/users"
                            element={<Users/>}
                     />
-                    <Route path="/login"
-                           element={<AuthLogin/>}
-                    />
+                    <Route element={<WithAuthRedirect/>}>
+                        <Route path="/dialogs/*"
+                               element={<Dialogs/>}
+                        />
+                        <Route path="/content/:userId"
+                               element={<Profile/>}
+                        />
+                        <Route path="/content"
+                               element={<Profile/>}
+                        />
+                    </Route>
+
                 </Routes>
             </div>
             <Footer/>
