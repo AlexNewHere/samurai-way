@@ -1,9 +1,8 @@
 import {configureStore} from '@reduxjs/toolkit';
-import {usersSlice} from './features/users/usersSlice';
-import {postsSlice} from './features/posts/postsSlice';
-import {dialogsSlice} from './features/dialogs/dialogsSlice';
-import {profileSlice} from './features/userFrofile/profileSlice';
-import {authSlice} from './features/authLogin/authSlice';
+import {usersSlice, profileSlice} from 'store/features';
+import {postsSlice} from 'store/features/posts';
+import {dialogsSlice} from 'store/features/dialogs';
+import {authSlice} from 'store/features/authLogin';
 
 export const store = configureStore({
     reducer: {
@@ -11,10 +10,8 @@ export const store = configureStore({
         posts: postsSlice.reducer,
         dialogs: dialogsSlice.reducer,
         profilePage: profileSlice.reducer,
-        authPage: authSlice.reducer,
-
+        authPage: authSlice.reducer
     },
-
 })
 
 export type RootState = ReturnType<typeof store.getState>

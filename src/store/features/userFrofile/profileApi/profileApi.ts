@@ -1,5 +1,6 @@
-import {instance} from '../../../../api';
-import {ProfileUserType} from '../profileTypes';
+import {instance} from 'api';
+import {ProfileUserType} from '../index';
+
 
 export const getProfileApi = (userId: string) => {
     return (

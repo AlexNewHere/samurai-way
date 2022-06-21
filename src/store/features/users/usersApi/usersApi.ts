@@ -1,4 +1,4 @@
-import {instance} from '../../../../api';
+import {instance} from 'api';
 import {FallowType, GetUsersType} from '../index';
 
 export const getUsersApi = (pageSize: number, currentPage: number) => {

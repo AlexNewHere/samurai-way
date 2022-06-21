@@ -8,7 +8,7 @@ export type ActionFallowProgressType = {
     isFalse: boolean
 }
 
-export type PostType = {
+export type UserPostType = {
     name: string
     id: string
     photos: PhotoType
@@ -27,7 +27,7 @@ export type UserType = {
 }
 
 export type UsersPageType = {
-    items: Array<PostType>
+    items: Array<UserPostType>
     totalCount: number
     error: string | null
     pageSize: number

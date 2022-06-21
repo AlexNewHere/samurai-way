@@ -1,8 +1,7 @@
 import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {AppDispatch, RootState} from '../../index';
-import {ActionFallowProgressType, GetUsersType, UsersPageType} from './index';
-import {fallowApi, getUsersApi, unfallowApi} from './usersApi';
-
+import {fallowApi, getUsersApi, unfallowApi} from './index';
+import {UsersPageType, GetUsersType, ActionFallowProgressType} from './userTypes';
 
 let initialState: UsersPageType = {
     items: [],
@@ -19,13 +18,13 @@ export const getUsersThunk = createAsyncThunk<GetUsersType, void, { state: RootS
     async function (_, thunkAPI) {
         const stateThunk = thunkAPI.getState()
         try {
-             return await getUsersApi(stateThunk.users.pageSize, stateThunk.users.currentPage)
+            return await getUsersApi(stateThunk.users.pageSize, stateThunk.users.currentPage)
         } catch (e) {
             return thunkAPI.rejectWithValue('Не удалось загрузить пользователей - ' + e)
         }
     })
 
-export const changeFallowThunk = createAsyncThunk<void, { id: string, btnType: string },{dispatch: AppDispatch} >(
+export const changeFallowThunk = createAsyncThunk<void, { id: string, btnType: string }, { dispatch: AppDispatch }>(
     'users/changeFallowThunk',
     async function ({id, btnType}, thunkAPI) {
         thunkAPI.dispatch(toggleIsFollowing({id, isFalse: true}))
