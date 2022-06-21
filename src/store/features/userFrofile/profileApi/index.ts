@@ -1,3 +1,0 @@
-export {getProfileApi} from './profileApi';
-
-

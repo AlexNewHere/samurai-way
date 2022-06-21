@@ -13,7 +13,7 @@ export type ContactsType = {
     website?: string | null
     youtube?: string | null
 }
-export type ProfileUserType = {
+export type GetProfileType = {
     userId: number
     aboutMe: string | null
     contacts: ContactsType
@@ -22,3 +22,5 @@ export type ProfileUserType = {
     lookingForAJobDescription: string | null
     photos: PhotoType
 }
+
+export type ProfileUserType = GetProfileType & {status: string}

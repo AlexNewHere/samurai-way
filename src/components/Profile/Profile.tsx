@@ -1,24 +1,24 @@
 import React, {useEffect} from 'react';
 import a from './Profile.module.css'
-import {ProfileInfo} from './ProfileInfo';
-import {MyPosts} from './Myposts';
-import {useAppSelector} from '../../store/hooks';
 import {useParams} from 'react-router-dom';
-import {ProfileAction} from '../../store/features/userFrofile';
-import {getProfileApi} from '../../store/features/userFrofile/profileApi';
+import {ProfileAction, profileAPI} from 'store/features';
+import {ProfileInfo, MyPosts} from 'components/Profile';
+import {useAppDispatch} from 'store/hooks';
+import {getProfileThunk} from 'store/features/userFrofile/profileSlice';
 
 export const Profile = () => {
 
-    const profile=useAppSelector(state=>state.profilePage);
     const {setProfileUser}=ProfileAction()
 
+    const dispatch = useAppDispatch()
     let {userId}=useParams<string>();
 
   useEffect( () => {
       if (userId===undefined) {
           userId='23943'
       }
-      getProfileApi(userId)
+      dispatch(getProfileThunk(userId))
+      profileAPI.getProfile(userId)
             .then(response => {
                 setProfileUser(response);
             })
@@ -26,7 +26,7 @@ export const Profile = () => {
 
     return (
         <div className={a.content}>
-            <ProfileInfo {...profile}/>
+            <ProfileInfo />
             <MyPosts/>
         </div>
     )

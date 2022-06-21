@@ -2,7 +2,7 @@ import React from 'react';
 import like from './img/like.png';
 import avatar from './img/avatar.png';
 import a from './Post.module.css'
-import {PostType} from '../../../../store/features/posts';
+import {PostType} from 'store/features';
 
 export const Post: React.FC<PostType> = ( {post,
                                               id,

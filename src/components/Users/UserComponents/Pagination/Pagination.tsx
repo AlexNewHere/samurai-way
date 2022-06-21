@@ -1,6 +1,6 @@
 import React, {ChangeEvent, useMemo} from 'react';
-import {useAppSelector} from '../../../../store/hooks';
-import {UsersAction} from '../../../../store/features/users';
+import {useAppSelector} from 'store/hooks';
+import {UsersAction} from 'store/features';
 
 export const Pagination = () => {
 

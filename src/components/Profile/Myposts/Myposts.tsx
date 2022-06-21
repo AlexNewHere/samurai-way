@@ -1,12 +1,13 @@
 import React, {ChangeEvent} from 'react';
 import a from './Myposts.module.css'
-import {Post, EmptyPost} from './index';
-import {useAppSelector} from '../../../store/hooks';
-import {PostAction} from '../../../store/features/posts';
+import {useAppSelector} from 'store/hooks';
+import {PostAction} from 'store/features';
+import {Post, EmptyPost} from 'components/Profile/Myposts';
 
 export const MyPosts = () => {
 
-    const {posts, newPostText} = useAppSelector((state) => state.posts);
+    const posts = useAppSelector((state) => state.posts.posts);
+    const newPostText = useAppSelector((state) => state.posts.newPostText);
     const {onPostChange, addPost} = PostAction()
 
     const addPostClick = () => {
@@ -29,16 +30,14 @@ export const MyPosts = () => {
                     <button onClick={addPostClick}>Submit</button>
                 </div>
             </div>
-
-            {posts.length? posts.map(post =>
-                <Post
-                    key={post.id}
-                    post={post.post}
-                    id={post.id}
-                    likesCount={post.likesCount}
-                />):
-            <EmptyPost/>}
-
+            {posts.length ? posts.map(post =>
+                    <Post
+                        key={post.id}
+                        post={post.post}
+                        id={post.id}
+                        likesCount={post.likesCount}
+                    />) :
+                <EmptyPost/>}
         </div>
     )
 }

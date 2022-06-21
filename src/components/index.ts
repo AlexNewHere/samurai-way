@@ -1,5 +1,5 @@
 export {Users} from './Users';
-export {Profile} from './Profile';
+export {Profile, ProfileInfo, ProfileStatuses} from './Profile';
 export {Navbar} from './Navbar';
 export {Header, AuthLogin} from './Header';
 export {Footer} from './Footer';

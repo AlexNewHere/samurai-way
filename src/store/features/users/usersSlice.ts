@@ -83,21 +83,21 @@ export const usersSlice = createSlice({
         builder.addCase(getUsersThunk.pending, (state) => {
             state.isFetching = true
         })
-        builder.addCase(getUsersThunk.fulfilled, (state, action) => {
+        .addCase(getUsersThunk.fulfilled, (state, action) => {
             state.isFetching = false
             state.items = action.payload.items
             state.totalCount = action.payload.totalCount
         })
-        builder.addCase(getUsersThunk.rejected, (state, action) => {
+        .addCase(getUsersThunk.rejected, (state, action) => {
             console.log(action.payload)
         })
-        builder.addCase(changeFallowThunk.pending, () => {
+        .addCase(changeFallowThunk.pending, () => {
             console.log('button pending')
         })
-        builder.addCase(changeFallowThunk.fulfilled, () => {
+        .addCase(changeFallowThunk.fulfilled, () => {
             console.log('button fulfilled')
         })
-        builder.addCase(changeFallowThunk.rejected, (_, action) => {
+        .addCase(changeFallowThunk.rejected, (_, action) => {
             console.log(action.payload)
         })
     }

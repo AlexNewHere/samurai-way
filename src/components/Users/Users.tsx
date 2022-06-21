@@ -1,8 +1,8 @@
 import React, {useEffect} from 'react';
 import './UserComponents/users.css'
-import {useAppDispatch, useAppSelector} from '../../store/hooks';
-import {getUsersThunk} from '../../store/features/users';
+import {useAppDispatch, useAppSelector} from 'store/hooks';
 import {CardUser, Pagination, Preloader} from './UserComponents';
+import {getUsersThunk} from 'store/features';
 
 export const Users = () => {
 

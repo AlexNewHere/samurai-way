@@ -1,5 +1,7 @@
-import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {ProfileUserType} from './profileTypes';
+import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {GetProfileType, profileAPI} from 'store/features';
+import {AppDispatch, RootState} from 'store/store';
+import {ProfileUserType} from 'store/features/userFrofile/profileTypes';
 
 
 let initialState: ProfileUserType = {
@@ -8,15 +10,27 @@ let initialState: ProfileUserType = {
     contacts: {},
     fullName: '',
     lookingForAJob: false,
-    lookingForAJobDescription:  null,
-    photos: {}
+    lookingForAJobDescription: null,
+    photos: {},
+    status: ''
 }
+
+export const getProfileThunk = createAsyncThunk<GetProfileType, string, { state: RootState, dispatch: AppDispatch }>(
+    'profilePage/getProfileThunk',
+    async function (id, thunkAPI) {
+        try {
+            return await profileAPI.getProfile(id)
+        } catch (e) {
+            return thunkAPI.rejectWithValue('Не удалось загрузить профиль - ' + e)
+        }
+    })
+
 
 export const profileSlice = createSlice({
     name: 'profilePage',
     initialState,
     reducers: {
-            setProfileUser: (_, action: PayloadAction<ProfileUserType>) => {
+        setProfileUser: (_, action: PayloadAction<ProfileUserType>) => {
             return action.payload
         },
         // setPageSize: (state, action: PayloadAction<number>) => {
@@ -29,6 +43,17 @@ export const profileSlice = createSlice({
         //     state.isFetching = action.payload
         // }
 
+    },
+    extraReducers: (builder) => {
+        builder.addCase(getProfileThunk.pending, (state) => {
+            console.log('Pending profile')
+        })
+            .addCase(getProfileThunk.fulfilled, (state, action) => {
+                console.log(action.payload)
+            })
+            .addCase(getProfileThunk.rejected, (state, action) => {
+                console.log(action.payload)
+            })
     }
 })
 
