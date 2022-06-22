@@ -1,7 +1,7 @@
 import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {AppDispatch, RootState} from '../../index';
-import {fallowApi, getUsersApi, unfallowApi} from './index';
-import {UsersPageType, GetUsersType, ActionFallowProgressType} from './userTypes';
+import {UsersPageType, GetUsersType, ActionFallowProgressType} from 'store/features';
+import {AppDispatch, RootState} from 'store/store';
+import {fallowApi, getUsersApi, unfallowApi} from 'store/features/users';
 
 let initialState: UsersPageType = {
     items: [],

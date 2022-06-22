@@ -1,33 +1,36 @@
 import React, {useEffect} from 'react';
 import a from './Profile.module.css'
 import {useParams} from 'react-router-dom';
-import {ProfileAction, profileAPI} from 'store/features';
-import {ProfileInfo, MyPosts} from 'components/Profile';
-import {useAppDispatch} from 'store/hooks';
-import {getProfileThunk} from 'store/features/userFrofile/profileSlice';
+import {ProfileInfo, MyPosts, ProfileStatuses} from 'components/Profile';
+import {useAppDispatch, useAppSelector} from 'store/hooks';
+import {getProfileThunk, getStatusThunk} from 'store/features';
+
+export const MY_ID_NUMBER: string = '23943'
 
 export const Profile = () => {
 
-    const {setProfileUser}=ProfileAction()
-
     const dispatch = useAppDispatch()
-    let {userId}=useParams<string>();
+    let {userId} = useParams<string>();
+    const status = useAppSelector(state => state.status.status);
 
-  useEffect( () => {
-      if (userId===undefined) {
-          userId='23943'
-      }
-      dispatch(getProfileThunk(userId))
-      profileAPI.getProfile(userId)
-            .then(response => {
-                setProfileUser(response);
-            })
+    useEffect(() => {
+        if (userId === undefined) {
+            userId = MY_ID_NUMBER
+        }
+        dispatch(getProfileThunk(userId))
+        dispatch(getStatusThunk(userId))
     }, [userId])
 
     return (
         <div className={a.content}>
-            <ProfileInfo />
-            <MyPosts/>
+            <ProfileInfo/>
+            {userId === undefined ?
+                <>
+                    <ProfileStatuses status={status}/>
+                    <MyPosts/>
+                </> :
+                <div>{status}</div>
+            }
         </div>
     )
 }

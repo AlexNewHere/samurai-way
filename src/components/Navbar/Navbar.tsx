@@ -8,7 +8,7 @@ export const Navbar = () => {
     return (
         <div className={s.sidebar}>
             <div className={s.item}>
-                <NavLink to="/content" className={linkActive}>Profile</NavLink>
+                <NavLink to="/profile" className={linkActive}>Profile</NavLink>
             </div>
             <div className={s.item}>
                 <NavLink to="/dialogs" className={linkActive}>Message</NavLink>

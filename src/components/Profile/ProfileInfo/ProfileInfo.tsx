@@ -1,20 +1,18 @@
 import React from 'react';
 import a from './ProfileInfo.module.css'
 import avatar from '../../../logo/avatar.jpg';
-import {ProfileStatuses} from 'components/Profile';
 import {useAppSelector} from 'store/hooks';
 
 export const ProfileInfo = () => {
 
-    const photos = useAppSelector(state => state.profilePage.photos);
-    const fullName = useAppSelector(state => state.profilePage.fullName);
-    const aboutMe = useAppSelector(state => state.profilePage.aboutMe);
+    const photos = useAppSelector(state => state.profilePage.profile.photos);
+    const fullName = useAppSelector(state => state.profilePage.profile.fullName);
+    const aboutMe = useAppSelector(state => state.profilePage.profile.aboutMe);
 
     return (
         <div className={a.content}>
 
-            <img src={photos.large !== null ? photos.large : avatar} alt="userAvatar"/>
-            <ProfileStatuses />
+            <img src={(photos !==undefined && photos.large!==null) ? photos.large : avatar} alt="userAvatar"/>
             <div>
                 <div>{fullName}</div>
                 <div>{aboutMe}</div>

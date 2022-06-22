@@ -17,7 +17,7 @@ export const CardUser: React.FC<PropsType> = (props) => {
         <div className="placeUsers">
             {props.items.map(user => <div key={user.id} className="users">
                 <div>
-                    <NavLink to={`/content/${user.id}`}>
+                    <NavLink to={`/profile/${user.id}`}>
                         <img
                             src={user.photos.small !== null ? user.photos.small : avatar}
                             className="imgAvatar" alt={'avatar'}/>

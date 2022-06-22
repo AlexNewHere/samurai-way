@@ -9,9 +9,12 @@ export {
 } from './users/usersSlice'
 export {UsersAction} from './users/useAction'
 
-export {profileSlice, ProfileAction, profileAPI, setProfileUser} from './userFrofile'
+export {profileSlice, ProfileAction, profileAPI, getProfileThunk} from './userFrofile'
 
 export {postsSlice, PostAction} from './posts'
+
+export {statusSlice, getStatusThunk, updateStatusThunk} from './userStatus'
+
 export type {PostType, ProfilePageType} from './posts'
 
 export type {
@@ -24,4 +27,9 @@ export type {
     UserPostType
 } from './users/userTypes'
 
-export type {GetProfileType} from './userFrofile'
+export type {
+    GetProfileType,
+    ProfileUsersType,
+    ContactsType,
+    PhotoProfileType
+} from './userFrofile'

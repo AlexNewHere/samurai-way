@@ -18,8 +18,8 @@ export const App = () => {
                     <Route path="/users" element={<Users/>}/>
                     <Route element={<WithAuthRedirect/>}>
                         <Route path="/dialogs/*" element={<Dialogs/>}/>
-                        <Route path="/content/:userId" element={<Profile/>}/>
-                        <Route path="/content" element={<Profile/>}/>
+                        <Route path="/profile/:userId" element={<Profile/>}/>
+                        <Route path="/profile" element={<Profile/>}/>
                     </Route>
                 </Routes>
             </div>

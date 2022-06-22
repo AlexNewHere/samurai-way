@@ -1,6 +1,6 @@
-export type PhotoType = {
-    small?: string | null
-    large?: string | null
+export type PhotoProfileType = {
+    small: string
+    large: string
 }
 
 export type ContactsType = {
@@ -20,7 +20,11 @@ export type GetProfileType = {
     fullName: string
     lookingForAJob: boolean
     lookingForAJobDescription: string | null
-    photos: PhotoType
+    photos: PhotoProfileType | undefined
+}
+export type ProfileUsersType = {
+    profile: GetProfileType
+    isLoading: boolean
 }
 
-export type ProfileUserType = GetProfileType & {status: string}
+

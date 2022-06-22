@@ -1,21 +1,13 @@
-import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {GetProfileType, profileAPI} from 'store/features';
-import {AppDispatch, RootState} from 'store/store';
-import {ProfileUserType} from 'store/features/userFrofile/profileTypes';
+import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
+import {GetProfileType, profileAPI, ProfileUsersType} from 'store/features';
 
 
-let initialState: ProfileUserType = {
-    userId: 1,
-    aboutMe: null,
-    contacts: {},
-    fullName: '',
-    lookingForAJob: false,
-    lookingForAJobDescription: null,
-    photos: {},
-    status: ''
+let initialState: ProfileUsersType = {
+    profile: {} as GetProfileType,
+    isLoading: false
 }
 
-export const getProfileThunk = createAsyncThunk<GetProfileType, string, { state: RootState, dispatch: AppDispatch }>(
+export const getProfileThunk = createAsyncThunk<GetProfileType, string>(
     'profilePage/getProfileThunk',
     async function (id, thunkAPI) {
         try {
@@ -29,32 +21,20 @@ export const getProfileThunk = createAsyncThunk<GetProfileType, string, { state:
 export const profileSlice = createSlice({
     name: 'profilePage',
     initialState,
-    reducers: {
-        setProfileUser: (_, action: PayloadAction<ProfileUserType>) => {
-            return action.payload
-        },
-        // setPageSize: (state, action: PayloadAction<number>) => {
-        //    state.pageSize = action.payload
-        // },
-        // setCurrentPage: (state, action: PayloadAction<number>) => {
-        //     state.currentPage = action.payload
-        // },
-        // toggleIsFetching: (state, action: PayloadAction<boolean>) => {
-        //     state.isFetching = action.payload
-        // }
-
-    },
+    reducers: {},
     extraReducers: (builder) => {
         builder.addCase(getProfileThunk.pending, (state) => {
-            console.log('Pending profile')
+            state.isLoading = true
         })
             .addCase(getProfileThunk.fulfilled, (state, action) => {
-                console.log(action.payload)
+                state.isLoading = false
+                state.profile = action.payload
             })
-            .addCase(getProfileThunk.rejected, (state, action) => {
-                console.log(action.payload)
+            .addCase(getProfileThunk.rejected, (state) => {
+                state.isLoading = false
             })
+
     }
 })
 
-export const {setProfileUser} = profileSlice.actions
+export const {} = profileSlice.actions
