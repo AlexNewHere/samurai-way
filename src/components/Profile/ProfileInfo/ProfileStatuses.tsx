@@ -1,15 +1,12 @@
-import React, {ChangeEvent, FC, useState} from 'react';
-import {useAppDispatch} from 'store/hooks';
+import React, {ChangeEvent, useState} from 'react';
+import {useAppDispatch, useAppSelector} from 'store/hooks';
 import {updateStatusThunk} from 'store/features';
 
-type PropsType = {
-    status: string | null
-}
-
-export const ProfileStatuses: FC<PropsType> = ({status}) => {
+export const ProfileStatuses = () => {
 
     let [editMode, setEditMode] = useState<boolean>(false);
     let [newTitle, setTitle] = useState<string>('')
+    const status = useAppSelector(state => state.status.status);
     const dispatch = useAppDispatch()
 
     const onDoubleClickHandle = () => {
@@ -20,11 +17,9 @@ export const ProfileStatuses: FC<PropsType> = ({status}) => {
         newTitle!==null && dispatch(updateStatusThunk(newTitle))
         setEditMode(false);
     }
-
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setTitle(e.currentTarget.value)
     }
-
     return (
         editMode
             ? <input
@@ -34,6 +29,4 @@ export const ProfileStatuses: FC<PropsType> = ({status}) => {
                 onBlur={onBlurHandle}/>
             : <span onDoubleClick={onDoubleClickHandle}> {status || '-------'} </span>
     );
-
-
 }

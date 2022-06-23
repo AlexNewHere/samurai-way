@@ -3,7 +3,16 @@ import {Route, Routes, Navigate} from 'react-router-dom';
 import './App.css';
 
 import {WithAuthRedirect} from 'Navigate';
-import {AuthLogin, Dialogs, Footer, Header, Navbar, Profile, Users} from 'components';
+import {
+    AuthLogin,
+    Dialogs,
+    Footer,
+    Header,
+    Navbar,
+    Profile,
+    UserProfile,
+    Users
+} from 'components';
 
 export const App = () => {
 
@@ -18,7 +27,7 @@ export const App = () => {
                     <Route path="/users" element={<Users/>}/>
                     <Route element={<WithAuthRedirect/>}>
                         <Route path="/dialogs/*" element={<Dialogs/>}/>
-                        <Route path="/profile/:userId" element={<Profile/>}/>
+                        <Route path="/profile/:userId" element={<UserProfile/>}/>
                         <Route path="/profile" element={<Profile/>}/>
                     </Route>
                 </Routes>

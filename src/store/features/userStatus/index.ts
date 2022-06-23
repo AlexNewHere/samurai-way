@@ -1,3 +1,3 @@
-export {statusApi} from './profileApi/statusApi'
+export {statusApi} from './statusApi/statusApi'
 export {statusSlice, getStatusThunk, updateStatusThunk} from './statusSlice'
-export type {UsersStatusType, StatusUpdateType} from './profileTypes'
+export type {UsersStatusType, StatusUpdateType} from './statusTypes'

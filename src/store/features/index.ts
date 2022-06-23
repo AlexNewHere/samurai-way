@@ -13,7 +13,9 @@ export {profileSlice, ProfileAction, profileAPI, getProfileThunk} from './userFr
 
 export {postsSlice, PostAction} from './posts'
 
-export {statusSlice, getStatusThunk, updateStatusThunk} from './userStatus'
+export {statusSlice, getStatusThunk, updateStatusThunk, statusApi} from './userStatus'
+
+export type {UsersStatusType, StatusUpdateType} from './userStatus'
 
 export type {PostType, ProfilePageType} from './posts'
 

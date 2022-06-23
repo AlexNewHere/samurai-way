@@ -1,6 +1,6 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
-import {AppDispatch} from 'store/store';
-import {statusApi, UsersStatusType} from 'store/features/userStatus';
+import {AppDispatch, RootState} from 'store/store';
+import {statusApi, UsersStatusType} from 'store/features';
 
 let initialState: UsersStatusType = {
     status: null,
@@ -16,12 +16,14 @@ export const getStatusThunk = createAsyncThunk<string | null, string, { dispatch
             return thunkAPI.rejectWithValue('Не удалось загрузить статус - ' + e)
         }
     })
-export const updateStatusThunk = createAsyncThunk<void, string, { dispatch: AppDispatch }>(
+export const updateStatusThunk = createAsyncThunk<void, string, { dispatch: AppDispatch, state: RootState }>(
     'userStatus/updateStatusThunk',
     async function (status, thunkAPI) {
         try {
+            let state = thunkAPI.getState()
+            let ID_NUMBER = (state.authPage.id!==null)? state.authPage.id.toString() : ''
             await statusApi.updateStatus(status)
-            // thunkAPI.dispatch(getStatusThunk(MY_ID_NUMBER))
+            thunkAPI.dispatch(getStatusThunk(ID_NUMBER))
         } catch (e) {
             return thunkAPI.rejectWithValue('Не удалось загрузить статус - ' + e)
         }
