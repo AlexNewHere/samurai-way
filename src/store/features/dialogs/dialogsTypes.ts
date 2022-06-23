@@ -9,5 +9,8 @@ export type MessageType = {
 export type DialogsPageType = {
     dialogs: Array<DialogType>
     messages: Array<MessageType>
-    newMessageText: string
+}
+
+export type FormDialogsType = {
+    text: string
 }

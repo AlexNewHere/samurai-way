@@ -1,35 +1,33 @@
-import React, {ChangeEvent} from 'react';
+import React from 'react';
 import a from './Myposts.module.css'
 import {useAppSelector} from 'store/hooks';
-import {PostAction} from 'store/features';
+import {FormPostType, PostAction} from 'store/features';
 import {Post, EmptyPost} from 'components/Profile/Myposts';
+import {useForm} from 'react-hook-form';
+
 
 export const MyPosts = () => {
 
     const posts = useAppSelector((state) => state.posts.posts);
-    const newPostText = useAppSelector((state) => state.posts.newPostText);
-    const {onPostChange, addPost} = PostAction()
+    const {addPost} = PostAction()
+    const {register, handleSubmit, reset} = useForm<FormPostType>();
 
-    const addPostClick = () => {
-        addPost()
+    const onSubmit = (data: FormPostType) => {
+        addPost(data)
+        reset()
     }
-
-    const onPostChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        onPostChange(e.currentTarget.value)
-    }
-
     return (
         <div>
             <div>My posts</div>
-            <div>
-                <textarea className={a.textarea}
-                          placeholder={'Enter your post'}
-                          value={newPostText}
-                          onChange={onPostChangeHandler}/>
-                <div>
-                    <button onClick={addPostClick}>Submit</button>
-                </div>
-            </div>
+            <form onSubmit={handleSubmit(onSubmit)}>
+                    <textarea {...register('text',
+                        {required: true}
+                    )}
+                              placeholder={'Введи текст'}/>
+
+                <input type="submit" name={'Отправить'}/>
+            </form>
+
             {posts.length ? posts.map(post =>
                     <Post
                         key={post.id}

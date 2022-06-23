@@ -16,7 +16,7 @@ export const UserProfile = () => {
             dispatch(getProfileThunk(userId))
             dispatch(getStatusThunk(userId))
         }
-    }, [userId])
+    }, [userId, dispatch])
 
     return (
         <div className={a.content}>

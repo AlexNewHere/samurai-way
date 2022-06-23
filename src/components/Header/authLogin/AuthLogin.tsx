@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
-import {useAppDispatch, useAppSelector} from '../../../store/hooks';
-import {authMeUserThunk} from '../../../store/features/authLogin';
+import {useAppDispatch, useAppSelector} from 'store/hooks';
+import {authMeUserThunk} from 'store/features/authLogin';
 
 export const AuthLogin = () => {
 

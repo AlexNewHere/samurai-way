@@ -11,10 +11,10 @@ export const ProfileStatuses = () => {
 
     const onDoubleClickHandle = () => {
         setEditMode(!editMode);
-        status!==null && setTitle(status)
+        status !== null && setTitle(status)
     }
     const onBlurHandle = () => {
-        newTitle!==null && dispatch(updateStatusThunk(newTitle))
+        newTitle !== null && dispatch(updateStatusThunk(newTitle))
         setEditMode(false);
     }
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {

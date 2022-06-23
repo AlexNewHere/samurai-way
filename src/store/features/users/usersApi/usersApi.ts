@@ -1,5 +1,5 @@
 import {instance} from 'api';
-import {FallowType, GetUsersType} from '../userTypes';
+import {FallowType, GetUsersType} from 'store/features';
 
 export const getUsersApi = (pageSize: number, currentPage: number) => {
     return (

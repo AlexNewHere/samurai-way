@@ -1,8 +1,13 @@
 import {configureStore} from '@reduxjs/toolkit';
-import {usersSlice, profileSlice, statusSlice} from 'store/features';
-import {postsSlice} from 'store/features/posts';
-import {dialogsSlice} from 'store/features/dialogs';
-import {authSlice} from 'store/features/authLogin';
+import {
+    usersSlice,
+    profileSlice,
+    statusSlice,
+    loginSlice,
+    postsSlice,
+    dialogsSlice,
+    authSlice
+} from 'store/features';
 
 export const store = configureStore({
     reducer: {
@@ -11,7 +16,8 @@ export const store = configureStore({
         dialogs: dialogsSlice.reducer,
         profilePage: profileSlice.reducer,
         authPage: authSlice.reducer,
-        status: statusSlice.reducer
+        status: statusSlice.reducer,
+        login: loginSlice.reducer
     },
 })
 
@@ -19,4 +25,4 @@ export type RootState = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch
 
 //@ts-ignore
-window.store=store
+window.store = store

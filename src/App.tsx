@@ -13,6 +13,7 @@ import {
     UserProfile,
     Users
 } from 'components';
+import {Login} from 'components/Login';
 
 export const App = () => {
 
@@ -24,6 +25,8 @@ export const App = () => {
                 <Routes>
                     <Route path="/" element={<Navigate replace to="/login"/>}/>
                     <Route path="/login" element={<AuthLogin/>}/>
+                    <Route path="/login1" element={<Login/>}/>
+
                     <Route path="/users" element={<Users/>}/>
                     <Route element={<WithAuthRedirect/>}>
                         <Route path="/dialogs/*" element={<Dialogs/>}/>
