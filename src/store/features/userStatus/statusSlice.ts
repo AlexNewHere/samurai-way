@@ -21,7 +21,7 @@ export const updateStatusThunk = createAsyncThunk<void, string, { dispatch: AppD
     async function (status, thunkAPI) {
         try {
             let state = thunkAPI.getState()
-            let ID_NUMBER = (state.authPage.id!==null)? state.authPage.id.toString() : ''
+            let ID_NUMBER = (state.login.id!==null)? state.login.id.toString() : ''
             await statusApi.updateStatus(status)
             thunkAPI.dispatch(getStatusThunk(ID_NUMBER))
         } catch (e) {

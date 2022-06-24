@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import './UserComponents/users.css'
 import {useAppDispatch, useAppSelector} from 'store/hooks';
 import {CardUser, Pagination, Preloader} from './UserComponents';
-import {getUsersThunk} from 'store/features';
+import {getUsersThunk, setCurrentPage, setPageSize} from 'store/features';
 
 export const Users = () => {
 
@@ -19,6 +19,13 @@ export const Users = () => {
     useEffect(() => {
         dispatch(getUsersThunk())
     }, [pageSize, currentPage, dispatch])
+
+    useEffect(()=>{
+        return ()=>{
+            dispatch(setCurrentPage(1))
+            dispatch(setPageSize(10))
+        }
+    }, [])
 
     return (
         <div>

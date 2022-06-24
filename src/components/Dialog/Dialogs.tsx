@@ -7,7 +7,6 @@ import {useAppDispatch, useAppSelector} from 'store/hooks';
 import {addPostMessage, FormDialogsType} from 'store/features';
 import {useForm} from 'react-hook-form';
 
-
 export const Dialogs = () => {
 
     const {dialogs, messages} = useAppSelector(state => state.dialogs);
@@ -41,7 +40,6 @@ export const Dialogs = () => {
                     <input type="submit" name={'Отправить'} disabled={isValid}/>
                 </form>
             </div>
-
         </div>
     )
 }

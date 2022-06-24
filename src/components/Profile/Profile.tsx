@@ -7,7 +7,7 @@ import {getProfileThunk, getStatusThunk} from 'store/features';
 export const Profile = () => {
 
     const dispatch = useAppDispatch()
-    const userId = useAppSelector(state => state.authPage.id);
+    const userId = useAppSelector(state => state.login.id);
 
     useEffect(() => {
         if (userId !== null) {

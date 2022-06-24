@@ -1,23 +1,21 @@
-export type LoginResponseType = {
+export type LoginResponseType<D> = {
     resultCode: number
-    fieldsErrors: any[]
     messages: any[]
-    data: LoginDataType
+    data: D
+}
+export type AuthType = {
+    id: number | null
+    email: string | null
+    login: string | null
+    isAuth: boolean
 }
 
 export type LoginDataType = {
     userId: number | null
 }
 
-export type LoginType = {
-    email: string
-    password: string
-    rememberMe: boolean
-    captcha: boolean
+export type LoginType = AuthType & {
     isFetching: boolean
-    isSuccess: boolean
-    isError: boolean
-    errorMessage: string
 }
 
 
@@ -26,6 +24,10 @@ export type FormInputs = {
     password: string
     rememberMe: boolean
 }
+
+
+
+
 
 
 

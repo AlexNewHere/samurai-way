@@ -1,10 +1,10 @@
 import React, {useEffect} from 'react';
 import {useAppDispatch, useAppSelector} from 'store/hooks';
-import {authMeUserThunk} from 'store/features/authLogin';
+import {authMeUserThunk} from 'store/features';
 
 export const AuthLogin = () => {
 
-    const {login, isAuth} = useAppSelector((state) => state.authPage);
+    const {login, isAuth} = useAppSelector((state) => state.login);
     const dispatch = useAppDispatch()
 
     useEffect(() => {

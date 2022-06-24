@@ -107,5 +107,7 @@ export const {
     follow,
     unfollow,
     toggleIsFetching,
-    toggleIsFollowing
+    toggleIsFollowing,
+    setCurrentPage,
+    setPageSize
 } = usersSlice.actions

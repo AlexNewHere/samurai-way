@@ -3,7 +3,7 @@ import {useAppSelector} from 'store/hooks';
 import React from 'react';
 
 export const WithAuthRedirect = () => {
-    const isAuth = useAppSelector(state => state.authPage.isAuth)
+    const isAuth = useAppSelector(state => state.login.isAuth)
     return (
         isAuth ?
             <Outlet/> :

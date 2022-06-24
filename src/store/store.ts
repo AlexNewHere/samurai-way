@@ -5,8 +5,7 @@ import {
     statusSlice,
     loginSlice,
     postsSlice,
-    dialogsSlice,
-    authSlice
+    dialogsSlice
 } from 'store/features';
 
 export const store = configureStore({
@@ -15,7 +14,6 @@ export const store = configureStore({
         posts: postsSlice.reducer,
         dialogs: dialogsSlice.reducer,
         profilePage: profileSlice.reducer,
-        authPage: authSlice.reducer,
         status: statusSlice.reducer,
         login: loginSlice.reducer
     },
