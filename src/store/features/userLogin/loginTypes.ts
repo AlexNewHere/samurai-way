@@ -1,3 +1,5 @@
+import {UseFormSetError} from 'react-hook-form';
+
 export type LoginResponseType<D> = {
     resultCode: number
     messages: any[]
@@ -18,11 +20,16 @@ export type LoginType = AuthType & {
     isFetching: boolean
 }
 
-
 export type FormInputs = {
     email: string
     password: string
     rememberMe: boolean
+    error: string
+}
+
+export type SetErrorType = {
+    data: FormInputs
+    setError: UseFormSetError<FormInputs>
 }
 
 

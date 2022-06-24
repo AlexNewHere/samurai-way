@@ -21,7 +21,11 @@ export const getProfileThunk = createAsyncThunk<GetProfileType, string>(
 export const profileSlice = createSlice({
     name: 'profilePage',
     initialState,
-    reducers: {},
+    reducers: {
+        clearProfileState: () => {
+            return initialState
+        }
+    },
     extraReducers: (builder) => {
         builder.addCase(getProfileThunk.pending, (state) => {
             state.isLoading = true
@@ -37,4 +41,4 @@ export const profileSlice = createSlice({
     }
 })
 
-export const {} = profileSlice.actions
+export const {clearProfileState} = profileSlice.actions

@@ -1,4 +1,4 @@
-export {profileSlice, getProfileThunk} from './profileSlice'
+export {profileSlice, getProfileThunk, clearProfileState} from './profileSlice'
 export {profileAPI} from './profileApi/profileApi'
 export {ProfileAction} from './profileAction'
 export type {

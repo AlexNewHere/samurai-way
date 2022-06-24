@@ -3,9 +3,10 @@ import {AppDispatch} from 'store';
 import {
     authApi,
     LoginType,
-    FormInputs,
     AuthType,
-    LoginResponseType, LoginDataType
+    LoginResponseType,
+    LoginDataType,
+    SetErrorType
 } from 'store/features';
 
 let initialState: LoginType = {
@@ -15,6 +16,7 @@ let initialState: LoginType = {
     isAuth: false,
     isFetching: false
 }
+
 export const authMeUserThunk = createAsyncThunk<void, void, { dispatch: AppDispatch }>(
     'login/authMeUserThunk',
     async function (_, thunkAPI) {
@@ -29,13 +31,26 @@ export const authMeUserThunk = createAsyncThunk<void, void, { dispatch: AppDispa
     }
 )
 
-export const loginUserThunk = createAsyncThunk<void, FormInputs, { dispatch: AppDispatch }>(
+export const loginUserThunk = createAsyncThunk<void, SetErrorType, { dispatch: AppDispatch }>(
     'login/loginUserThunk',
-    async function (data, thunkAPI) {
+    async function ({data, setError}, thunkAPI) {
         try {
             let response = await authApi.loginApi(data)
+            console.log(response)
             if (response.resultCode === 0) {
                 thunkAPI.dispatch(authMeUserThunk())
+            }
+            if (response.resultCode === 1) {
+                setError('error', {
+                    type: 'auth',
+                    message: 'Не верный логин или пароль'
+                })
+            }
+            if (response.resultCode === 10) {
+                setError('error', {
+                    type: 'auth',
+                    message: 'Слишком много попыток. Введите капчу с картинки'
+                })
             }
         } catch (e) {
             return thunkAPI.rejectWithValue('Не удалось войти в аккаунт - ' + e)
@@ -57,7 +72,7 @@ export const loginSlice = createSlice({
     name: 'login',
     initialState,
     reducers: {
-        setAuthUserData: (state: LoginType, action: PayloadAction<AuthType>): LoginType => {
+        setAuthUserData: (_, action: PayloadAction<AuthType>): LoginType => {
             return {...action.payload, isAuth: true, isFetching: false}
         },
         clearState: (state) => {

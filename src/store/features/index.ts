@@ -41,13 +41,14 @@ export type {
     LoginResponseType,
     LoginDataType,
     FormInputs,
-    AuthType
+    AuthType,
+    SetErrorType
 } from './userLogin'
 
 export {statusSlice, getStatusThunk, updateStatusThunk, statusApi} from './userStatus'
 export type {UsersStatusType, StatusUpdateType} from './userStatus'
 
-export {profileSlice, ProfileAction, profileAPI, getProfileThunk} from './userFrofile'
+export {profileSlice, ProfileAction, profileAPI, getProfileThunk, clearProfileState} from './userFrofile'
 export type {
     GetProfileType,
     ProfileUsersType,

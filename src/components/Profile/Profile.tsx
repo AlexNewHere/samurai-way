@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import a from './Profile.module.css'
 import {ProfileInfo, MyPosts, ProfileStatuses} from 'components/Profile';
 import {useAppDispatch, useAppSelector} from 'store/hooks';
-import {getProfileThunk, getStatusThunk} from 'store/features';
+import {getProfileThunk, getStatusThunk, clearProfileState} from 'store/features';
 
 export const Profile = () => {
 
@@ -15,6 +15,12 @@ export const Profile = () => {
             dispatch(getStatusThunk(userId.toString()))
         }
     }, [userId, dispatch])
+
+    useEffect(()=> {
+        return () => {
+            dispatch(clearProfileState())
+        }
+    }, [])
 
     return (
         <div className={a.content}>
