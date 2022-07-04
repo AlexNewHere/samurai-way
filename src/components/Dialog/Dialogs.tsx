@@ -1,8 +1,6 @@
 import React from 'react';
 import s from './Dialogs.module.css'
-import {DialogItem} from './DialogItem/DialogsItem';
-import {Message} from './Message/Messages';
-import a from '../Profile/Myposts/Myposts.module.css';
+import {DialogItem, Message} from 'components/Dialog';
 import {useAppDispatch, useAppSelector} from 'store/hooks';
 import {addPostMessage, FormDialogsType} from 'store/features';
 import {useForm} from 'react-hook-form';

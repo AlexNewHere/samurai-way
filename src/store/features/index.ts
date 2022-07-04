@@ -23,7 +23,6 @@ export type {
 export {dialogsSlice, addPostMessage} from './dialogs'
 export type {MessageType, DialogType, DialogsPageType, FormDialogsType} from './dialogs'
 
-
 export {postsSlice, PostAction, addPost} from './posts'
 export type {PostType, ProfilePageType, FormPostType} from './posts'
 
@@ -48,7 +47,9 @@ export type {
 export {statusSlice, getStatusThunk, updateStatusThunk, statusApi} from './userStatus'
 export type {UsersStatusType, StatusUpdateType} from './userStatus'
 
-export {profileSlice, ProfileAction, profileAPI, getProfileThunk, clearProfileState} from './userFrofile'
+export {
+    profileSlice, ProfileAction, profileAPI, getProfileThunk, clearProfileState
+} from './userFrofile'
 export type {
     GetProfileType,
     ProfileUsersType,

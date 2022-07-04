@@ -2,27 +2,10 @@ import React from 'react';
 import s from './Header.module.css';
 import logo from './logo/logo.png'
 import {NavLink} from 'react-router-dom';
-import {useAppDispatch, useAppSelector} from 'store/hooks';
-import {logOutUserThunk} from 'store/features/userLogin';
+import {useAppSelector} from 'store/hooks';
+import {AuthName} from 'components/Header';
 
 const linkActive = ({isActive}: { isActive: boolean }) => isActive ? `${s.loginBlock} ${s.activeBlock}` : s.loginBlock;
-
-export const AuthName = () => {
-
-    const login = useAppSelector((state) => state.login.login);
-    const dispatch = useAppDispatch()
-
-    const logOutHandle = () => {
-        dispatch(logOutUserThunk())
-    }
-
-    return (
-        <div>
-            <div>{login}</div>
-            <button onClick={logOutHandle}>Log out</button>
-        </div>
-    )
-}
 
 export const Header = () => {
 
@@ -35,7 +18,6 @@ export const Header = () => {
             {isAuth ?
                 <AuthName/> :
                 <NavLink className={linkActive} to="/login">Login</NavLink>}
-
         </header>
     )
 }
