@@ -4,7 +4,8 @@ import {authMeUserThunk} from 'store/features';
 
 export const AuthLogin = () => {
 
-    const {login, isAuth} = useAppSelector((state) => state.login);
+    const login = useAppSelector((state) => state.login.login);
+    const isAuth = useAppSelector((state) => state.login.isAuth);
     const dispatch = useAppDispatch()
 
     useEffect(() => {

@@ -7,7 +7,7 @@ import {FormInputs, loginUserThunk, SetErrorType} from 'store/features';
 
 export const Login = () => {
     const dispatch = useDispatch();
-    const {isAuth} = useAppSelector(store => store.login);
+    const isAuth = useAppSelector(store => store.login.isAuth);
 
     const {register, handleSubmit, setError, clearErrors, formState: {errors}} = useForm<FormInputs>();
 

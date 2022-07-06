@@ -1,4 +1,4 @@
-export {loginSlice, loginUserThunk, clearState, logOutUserThunk, setAuthUserData, authMeUserThunk, } from './loginSlice'
+export {loginSlice, loginUserThunk, logOutUserThunk, setAuthUserData, authMeUserThunk, } from './loginSlice'
 export {authApi} from './authApi/loginApi'
 export type {
     LoginResponseType,

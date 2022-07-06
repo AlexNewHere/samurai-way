@@ -30,7 +30,6 @@ export {
     authApi,
     loginSlice,
     loginUserThunk,
-    clearState,
     logOutUserThunk,
     authMeUserThunk,
     setAuthUserData
@@ -56,3 +55,4 @@ export type {
     ContactsType,
     PhotoProfileType
 } from './userFrofile'
+
