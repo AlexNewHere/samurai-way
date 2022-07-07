@@ -1,5 +1,4 @@
 import React from 'react';
-import a from './Myposts.module.css'
 import {useAppSelector} from 'store/hooks';
 import {FormPostType, PostAction} from 'store/features';
 import {Post, EmptyPost} from 'components/Profile/Myposts';

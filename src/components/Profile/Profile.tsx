@@ -20,7 +20,7 @@ export const Profile = () => {
         return () => {
             dispatch(clearProfileState())
         }
-    }, [])
+    }, [dispatch])
 
     return (
         <div className={a.content}>

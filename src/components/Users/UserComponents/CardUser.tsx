@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ReactElement} from 'react';
 import avatar from '../../../logo/avatar.jpg';
 import {NavLink} from 'react-router-dom';
 import {useAppDispatch} from 'store/hooks';
@@ -9,7 +9,7 @@ type PropsType = {
     followingIsProgress: Array<string>
 }
 
-export const CardUser: React.FC<PropsType> = ({items, followingIsProgress}) => {
+export const CardUser: React.FC<PropsType> = ({items, followingIsProgress}): ReactElement => {
 
     const dispatch = useAppDispatch()
 
