@@ -17,7 +17,7 @@ export type LoginDataType = {
 }
 
 export type LoginType = AuthType & {
-    isFetching: boolean
+    isFetchLogin: boolean
 }
 
 export type FormInputs = {

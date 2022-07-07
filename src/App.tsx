@@ -16,11 +16,10 @@ import {Login} from 'components/Login';
 import {useAppDispatch, useAppSelector} from 'store/hooks';
 import {Preloader} from 'components/Users';
 import {authMeUserThunk} from 'store/features';
-import {getFetchLoader} from 'store';
 
 export const App = (): ReactElement => {
 
-    const isFetching = useAppSelector(getFetchLoader)
+    const isFetchLogin = useAppSelector(state=>state.login.isFetchLogin)
     const dispatch = useAppDispatch()
 
     useEffect(() => {
@@ -29,7 +28,7 @@ export const App = (): ReactElement => {
 
     return (
         <>
-            {isFetching ? <Preloader/> :
+            {isFetchLogin ? <Preloader/> :
                 <div className="grid_wrapper">
                     <Header/>
                     <Navbar/>

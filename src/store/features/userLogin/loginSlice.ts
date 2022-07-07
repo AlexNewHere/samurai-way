@@ -13,7 +13,7 @@ let initialState: LoginType = {
     email: null,
     login: null,
     isAuth: false,
-    isFetching: true
+    isFetchLogin: true
 }
 
 export const authMeUserThunk = createAsyncThunk<LoginResponseType<AuthType> | void, void, { dispatch: AppDispatch, state: RootState }>(
@@ -73,20 +73,20 @@ export const loginSlice = createSlice({
     initialState,
     reducers: {
         setAuthUserData: (_, action: PayloadAction<AuthType>): LoginType => {
-            return {...action.payload, isAuth: true, isFetching: false}
+            return {...action.payload, isAuth: true, isFetchLogin: false}
         },
         changeFetching: (state, action: PayloadAction<boolean>): void => {
-            state.isFetching = action.payload
+            state.isFetchLogin = action.payload
         }
     },
     extraReducers: (builder) => {
         builder
             .addCase(authMeUserThunk.pending, (state) => {
-                state.isFetching = true
+                state.isFetchLogin = true
             })
             .addCase(authMeUserThunk.rejected, (state, action) => {
                 console.log(action.payload)
-                state.isFetching = false
+                state.isFetchLogin = false
             })
             .addCase(loginUserThunk.pending, () => {
                 console.log('Await authorization')
@@ -101,7 +101,7 @@ export const loginSlice = createSlice({
                 console.log('Await logout')
             })
             .addCase(logOutUserThunk.fulfilled, () => {
-                return {...initialState, isFetching: false}
+                return {...initialState, isFetchLogin: false}
             })
             .addCase(logOutUserThunk.rejected, (_, action) => {
                 console.log(action.payload)

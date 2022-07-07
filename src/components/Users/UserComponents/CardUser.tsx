@@ -9,13 +9,13 @@ type PropsType = {
     followingIsProgress: Array<string>
 }
 
-export const CardUser: React.FC<PropsType> = (props) => {
+export const CardUser: React.FC<PropsType> = ({items, followingIsProgress}) => {
 
     const dispatch = useAppDispatch()
 
     return (
         <div className="placeUsers">
-            {props.items.map(user => <div key={user.id} className="users">
+            {items.map(user => <div key={user.id} className="users">
                 <div>
                     <NavLink to={`/profile/${user.id}`}>
                         <img
@@ -25,7 +25,7 @@ export const CardUser: React.FC<PropsType> = (props) => {
 
                     {user.followed ?
                         <button
-                            disabled={props.followingIsProgress.some(id => id === user.id)}
+                            disabled={followingIsProgress.some(id => id === user.id)}
                             onClick={() => {
                                 dispatch(changeFallowThunk({
                                     id: user.id,
@@ -33,7 +33,7 @@ export const CardUser: React.FC<PropsType> = (props) => {
                                 }))
                             }}>Unfollow</button>
                         : <button
-                            disabled={props.followingIsProgress.some(id => id === user.id)}
+                            disabled={followingIsProgress.some(id => id === user.id)}
                             onClick={() => {
                                 dispatch(changeFallowThunk({
                                     id: user.id,
