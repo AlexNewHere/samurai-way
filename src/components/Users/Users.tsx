@@ -3,16 +3,18 @@ import './UserComponents/users.css'
 import {useAppDispatch, useAppSelector} from 'store/hooks';
 import {CardUser, Pagination, Preloader} from 'components/Users';
 import {getUsersThunk, setCurrentPage, setPageSize} from 'store/features';
+import {getFetchLoader, getUsersItems} from 'store';
 
 export const Users = () => {
 
     const {
-        items,
         pageSize,
         currentPage,
-        isFetching,
         followingIsProgress
     } = useAppSelector((state) => state.users);
+
+    const items = useAppSelector(getUsersItems)
+    const isFetching = useAppSelector(getFetchLoader)
 
     const dispatch = useAppDispatch()
 

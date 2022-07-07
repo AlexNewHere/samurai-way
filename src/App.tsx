@@ -1,7 +1,6 @@
-import React, {useEffect} from 'react';
+import React, {ReactElement, useEffect} from 'react';
 import {Route, Routes, Navigate} from 'react-router-dom';
 import './App.css';
-
 import {WithAuthRedirect} from 'Navigate';
 import {
     AuthLogin,
@@ -17,10 +16,11 @@ import {Login} from 'components/Login';
 import {useAppDispatch, useAppSelector} from 'store/hooks';
 import {Preloader} from 'components/Users';
 import {authMeUserThunk} from 'store/features';
+import {getFetchLoader} from 'store';
 
-export const App = () => {
+export const App = (): ReactElement => {
 
-    const isFetching = useAppSelector(state => state.login.isFetching)
+    const isFetching = useAppSelector(getFetchLoader)
     const dispatch = useAppDispatch()
 
     useEffect(() => {
