@@ -1,8 +1,8 @@
-import React, {ChangeEvent, useState} from 'react';
+import React, {ChangeEvent, ReactElement, useState} from 'react';
 import {useAppDispatch, useAppSelector} from 'store/hooks';
 import {updateStatusThunk} from 'store/features';
 
-export const ProfileStatuses = () => {
+export const ProfileStatuses = (): ReactElement => {
 
     let [editMode, setEditMode] = useState<boolean>(false);
     let [newTitle, setTitle] = useState<string>('')

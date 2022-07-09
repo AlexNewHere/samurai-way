@@ -1,14 +1,14 @@
-import React from 'react';
+import React, {ReactElement} from 'react';
 import {useAppSelector} from 'store/hooks';
 import {FormPostType, PostAction} from 'store/features';
 import {Post, EmptyPost} from 'components/Profile/Myposts';
 import {useForm} from 'react-hook-form';
 
-
-export const MyPosts = () => {
+export const MyPosts = (): ReactElement => {
 
     const posts = useAppSelector((state) => state.posts.posts);
     const {addPost} = PostAction()
+
     const {register, handleSubmit, reset} = useForm<FormPostType>();
 
     const onSubmit = (data: FormPostType) => {
