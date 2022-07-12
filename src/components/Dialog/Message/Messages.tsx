@@ -4,9 +4,9 @@ import s from './../Dialogs.module.css'
 type PropsType = {
     message: string
 }
-export const Message = (props: PropsType) => {
+export const Message = ({message}: PropsType) => {
     return (
-        <div className={s.message}>{props.message}</div>
+        <div className={s.message}>{message}</div>
     )
 }
 

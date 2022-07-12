@@ -7,9 +7,15 @@ import {useForm} from 'react-hook-form';
 
 export const Dialogs = () => {
 
-    const {dialogs, messages} = useAppSelector(state => state.dialogs);
+    const messages = useAppSelector(state => state.dialogs.messages);
+    const dialogs = useAppSelector(state => state.dialogs.dialogs);
     const dispatch = useAppDispatch();
-    const {register, handleSubmit, reset, formState: {errors, isValid}} = useForm<FormDialogsType>();
+    const {
+        register,
+        handleSubmit,
+        reset,
+        formState: {errors, isValid}
+    } = useForm<FormDialogsType>();
 
     const dialogsElements = dialogs.map(d =>
         <DialogItem name={d.name} key={d.id}/>)
@@ -31,8 +37,10 @@ export const Dialogs = () => {
                 {messagesElements}
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <textarea {...register('text',
-                        {required: true,
-                        maxLength: 50})}
+                        {
+                            required: true,
+                            maxLength: 50
+                        })}
                               placeholder={'Введи текст'}/>
                     <div>{errors.text && <p>Слишком длинное сообщение!!!</p>}</div>
                     <input type="submit" name={'Отправить'} disabled={isValid}/>
