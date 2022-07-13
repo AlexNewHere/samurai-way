@@ -6,6 +6,7 @@ import {useAppSelector} from 'store/hooks';
 import {FormInputs, loginUserThunk, SetErrorType} from 'store/features';
 
 export const Login = () => {
+
     const dispatch = useDispatch();
     const isAuth = useAppSelector(store => store.login.isAuth);
 
@@ -20,7 +21,6 @@ export const Login = () => {
     const changeHandle = () => {
         clearErrors("error")
     }
-
     return (
         <Fragment>
             {isAuth ? <Navigate replace to="/profile"/> :

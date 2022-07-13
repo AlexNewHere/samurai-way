@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {ReactElement} from 'react';
 import f from './Footer.module.css'
 
-export const Footer = () =>{
+export const Footer = (): ReactElement =>{
     return (
         <footer className={f.footer}>
             By alex

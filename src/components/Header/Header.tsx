@@ -1,13 +1,13 @@
-import React from 'react';
+import React, {ReactElement} from 'react';
 import s from './Header.module.css';
 import logo from './logo/logo.png'
 import {NavLink} from 'react-router-dom';
 import {useAppSelector} from 'store/hooks';
 import {AuthName} from 'components/Header';
 
-const linkActive = ({isActive}: { isActive: boolean }) => isActive ? `${s.loginBlock} ${s.activeBlock}` : s.loginBlock;
+const linkActive = ({isActive}: { isActive: boolean }): string => isActive ? `${s.loginBlock} ${s.activeBlock}` : s.loginBlock;
 
-export const Header = () => {
+export const Header = (): ReactElement => {
 
     const isAuth = useAppSelector((state) => state.login.isAuth);
 

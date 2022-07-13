@@ -1,10 +1,10 @@
-import React from 'react';
+import React, {ReactElement} from 'react';
 import s from './Navbar.module.css'
 import {NavLink} from 'react-router-dom';
 
-const linkActive = ({isActive}: { isActive: boolean }) => isActive ? s.active : s.link;
+const linkActive = ({isActive}: { isActive: boolean }): string => isActive ? s.active : s.link;
 
-export const Navbar = () => {
+export const Navbar = (): ReactElement => {
     return (
         <div className={s.sidebar}>
             <div className={s.item}>
