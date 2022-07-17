@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {ReactElement} from 'react';
 import a from './ProfileInfo.module.css'
 import avatar from '../../../logo/avatar.jpg';
 import {useAppSelector} from 'store/hooks';
 
-export const ProfileInfo = () => {
+export const ProfileInfo = (): ReactElement => {
 
     const photos = useAppSelector(state => state.profilePage.profile.photos);
     const fullName = useAppSelector(state => state.profilePage.profile.fullName);

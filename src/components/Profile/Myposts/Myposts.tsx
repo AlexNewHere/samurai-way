@@ -10,7 +10,6 @@ export const MyPosts = (): ReactElement => {
     const {addPost} = PostAction()
 
     const {register, handleSubmit, reset} = useForm<FormPostType>();
-
     const onSubmit = (data: FormPostType) => {
         addPost(data)
         reset()

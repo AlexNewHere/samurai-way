@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {ReactElement} from 'react';
 
-export const EmptyPost = () => {
+export const EmptyPost = (): ReactElement => {
     return (
         <div>
             Сдесь ничего нет

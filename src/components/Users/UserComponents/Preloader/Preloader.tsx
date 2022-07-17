@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {ReactElement} from 'react';
 import './preloader.css'
 
-export function Preloader() {
+export function Preloader(): ReactElement {
     return (
         <div className="lds-default">
             <div></div>
