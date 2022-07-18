@@ -11,7 +11,6 @@ export const ProfileInfo = (): ReactElement => {
 
     return (
         <div className={a.content}>
-
             <img src={(photos !==undefined && photos.large!==null) ? photos.large : avatar} alt="userAvatar"/>
             <div>
                 <div>{fullName}</div>
