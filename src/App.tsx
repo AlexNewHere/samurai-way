@@ -21,7 +21,6 @@ export const App = (): ReactElement => {
 
     const isFetchLogin = useAppSelector(state=>state.login.isFetchLogin)
     const dispatch = useAppDispatch()
-
     useEffect(() => {
         dispatch(authMeUserThunk())
     }, [dispatch])
