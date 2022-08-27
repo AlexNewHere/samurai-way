@@ -16,6 +16,7 @@ export const getStatusThunk = createAsyncThunk<string | null, string, { dispatch
             return thunkAPI.rejectWithValue('Не удалось загрузить статус - ' + e)
         }
     })
+
 export const updateStatusThunk = createAsyncThunk<void, string, { dispatch: AppDispatch, state: RootState }>(
     'userStatus/updateStatusThunk',
     async function (status, thunkAPI) {
